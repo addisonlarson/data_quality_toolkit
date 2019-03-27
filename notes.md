@@ -36,7 +36,6 @@ What would be the advantages or downsides of a comparative study? If there's a d
 - Consider highlighting outliers (abnormally high CVs), either the the same geographies over time or each geography compared to its neighbors or the region. What happens to map accuracy if outliers are removed?
 - Is it feasible to compute the median CV? To remove outliers and recalculate the median CV?
 
-
 ## Caveats and cautions
 
 - What about calibration and resolution? (Philip Tetlock)
@@ -100,3 +99,13 @@ Otherwise, "SDAL Synthetic Technology" allows for cool areal interpolation throu
 ## For later
 - [An approach for managing data quality](http://www.canberra.edu.au/researchrepository/file/9474198c-c848-102a-3745-e1671cd29881/1/full_text.pdf)
 - [`dlookr`, an R package for EDA, data summary, outlier removal, missing data imputation](https://cran.r-project.org/web/packages/dlookr/vignettes/diagonosis.html)
+
+## Les autres
+
+- [x] Defining an "outlier" observation temporally. *Findings*: in a test run with ACS B08101 (Means of Transpo to Work: Transit), only the most stupendous census tracts don't have a problem with wildly fluctuating CVs. It would take several years of data to determine what tracts are least reliable over time.
+
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/temporal.png "CV changes, 2011-2017")
+
+- [ ] Defining an "outlier" observation spatially.
+- [ ] Mean and median CVs; changes with geography, variable detail, and dropped outliers.
+- [ ] Changes in map accuracy with dropped outliers (we know the story for geography and variable detail).
