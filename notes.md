@@ -38,6 +38,7 @@ What would be the advantages or downsides of a comparative study? If there's a d
 
 ## Caveats and cautions
 
+- **Edge effects.** Any applications of spatial link matrices must include spatial units adjacent to the study area and clip to the study area later.
 - What about calibration and resolution? (Philip Tetlock)
 - One could consider the issue of data quality to be relative to the use case. If you're comparing tracts to determine who gets funding for a trails project, then you want that data to be suitable for *comparative purposes*; you don't care about the ground truth of the values provided that the relative order is correct.
 - What does data quality mean in the context of the ACS? The question is not one of completeness but (perhaps) one of usefulness.
@@ -124,6 +125,6 @@ The CV followed by three attempts to identify outliers.
 
 One might ask why we don't simply set a maximum acceptable CV. Certainly it's worth looking into maximum acceptable ceilings, and for larger geos and less detailed variables every CV could theoretically be acceptable. These refinements can be included later. I am trying to create a way to benchmark *relative* data quality as one moves into smaller geographies and more detailed crosstabs, and eliminate the worst observations while allowing one to preserve most of the study area.
 
-- [ ] Mean and median CVs; changes with geography, variable detail, and dropped outliers.
+- [ ] Mean and median CVs; changes with geography, variable detail, and dropped outliers. *Tentative findings*: Dropped outliers certainly help improve CVs overall. More tests needed with different variables and geographies to iron out programming pitfalls.
 - [ ] Changes in map accuracy with dropped outliers (we know the story for geography and variable detail).
 - [ ] CV Viewer
