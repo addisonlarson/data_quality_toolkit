@@ -3,6 +3,7 @@ library(tidyverse)
 library(tidycensus)
 library(sf)
 library(spdep)
+
 # 2017 data
 a <- get_acs(geography = "tract",
              state = "DC",
@@ -88,17 +89,53 @@ a <- get_acs(geography = "tract",
          year = 2017) %>%
   drop_na(.)
 a_spatial <- as(a, "Spatial")
-a_nb <- poly2nb(a_spatial, queen = FALSE)
+a_nb <- poly2nb(a_spatial, queen = TRUE)
+a_lag <- nblag(a_nb, 2)
+a_lag_nb <- nblag_cumul(a_lag)
 
-# First, for a single tract
+# For happy maps
+disp <- spTransform(a_spatial, CRS("+proj=longlat +datum=WGS84"))
+coords <- coordinates(disp)
+disp_nb <- poly2nb(disp, queen = TRUE)
+disp_lag_nb <- nblag(disp_nb, 2)
+# png(here("figs", "first_order.png"), width = 5, height = 7, units = "in", res = 400)
+plot(disp, col = "gainsboro", main = "First-order links")
+plot(disp_lag_nb[[1]], test_coords, col = "darkolivegreen", add = TRUE)
+# dev.off()
+# png(here("figs", "second_order.png"), width = 5, height = 7, units = "in", res = 400)
+plot(disp, col = "gainsboro", main = "Second-order links")
+plot(disp_lag_nb[[2]], test_coords, col = "darkolivegreen", add = TRUE)
+# dev.off()
+# High percentage difference from neighbors
 flag <- vector()
-test <- a_nb[[1]]
-nb_properties <- a %>% slice(test) %>% pull(cv) %>% mean(.)
-self_properties <- a %>% slice(1) %>% pull(cv) %>% mean(.)
-diff <- (self_properties - nb_properties) /
-  ((self_properties + nb_properties) / 2) * 100
-if(diff >= 40){
-  flag <- c(flag, 1)
-} else {
-  flag <- c(flag, 0)
+for(j in 1:length(a_nb)){
+  sub <- a_nb[[j]]
+  nb_properties <- a %>% slice(sub) %>% pull(cv) %>% mean(.)
+  self_properties <- a %>% slice(j) %>% pull(cv) %>% mean(.)
+  diff <- (self_properties - nb_properties) /
+    ((self_properties + nb_properties) / 2) * 100
+  if(diff >= 40){
+    flag <- c(flag, 1)
+  } else {
+    flag <- c(flag, 0)
+  }
 }
+a$sp_outlier <- as.factor(flag)
+png(here("figs", "sp_outlier.png"), width = 5, height = 7, units = "in", res = 400)
+plot(a["sp_outlier"], main = "Outliers by tract")
+dev.off()
+
+# Local spatial autocorrelation
+link <- localmoran(a_spatial$cv, nb2listw(a_nb), alternative = "two.tailed")
+lag_link <- localmoran(a_spatial$cv, nb2listw(a_lag_nb), alternative = "two.tailed")
+a$moran1 <- link[,5]
+a$moran2 <- lag_link[,5]
+png(here("figs", "cv.png"), width = 5, height = 7, units = "in", res = 400)
+plot(a["cv"], main = "CV by tract")
+dev.off()
+png(here("figs", "first_moran.png"), width = 5, height = 7, units = "in", res = 400)
+plot(a["moran1"], main = "First-order clusters by tract")
+dev.off()
+png(here("figs", "second_moran.png"), width = 5, height = 7, units = "in", res = 400)
+plot(a["moran2"], main = "First- and second-order clusters by tract")
+dev.off()

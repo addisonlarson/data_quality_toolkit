@@ -57,7 +57,7 @@ What would be the advantages or downsides of a comparative study? If there's a d
 
 [The Data Quality Index](https://www.worldeconomics.com/pages/Data-Quality-Index.aspx)
 
-You can't trust the GDP data countries give you. Factor in the "shadow economy" and "corruption" and your GDP values can differ significantly! This site allows you to set your priorities and the data quality will change accordingly. Similar approach as affordable housing prioritization project with CZ.
+You can't trust the GDP data countries give you. Factor in the "shadow economy" and "corruption" and your GDP values can differ significantly. This site allows you to set your priorities and the data quality will change accordingly. Similar approach as affordable housing prioritization project with CZ.
 
 [ECB supervisory data quality framework, tools and products](https://www.bankingsupervision.europa.eu/press/conferences/sup_rep_conf/shared/pdf/2017/Data_quality_framework_tools_and_products.pdf)
 
@@ -106,6 +106,22 @@ Otherwise, "SDAL Synthetic Technology" allows for cool areal interpolation throu
 
 ![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/temporal.png "CV changes, 2011-2017")
 
-- [ ] Defining an "outlier" observation spatially.
+- [x] Defining an "outlier" observation spatially. *Findings*: so far, it looks simple but effective to construct a spatial link matrix and identify those census tracts that have a large percentage difference from their neighbors. Attempts to use local spatial autocorrelation are a flop so far, but it's still worth thinking about.
+
+Finally figured out how to plot a spatial link matrix!
+
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/first_order.png "First order spatial link matrix, queen contiguity")
+
+The CV followed by three attempts to identify outliers.
+
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/sp_outlier.png "Percentage difference from neighbors")
+
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/first_moran.png "Local Moran's i p-values, first-order")
+
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/second_moran.png "Local Moran's i p-values, second-order")
+
+One might ask why we don't simply set a maximum acceptable CV. Certainly it's worth looking into maximum acceptable ceilings, and for larger geos and less detailed variables every CV could theoretically be acceptable. These refinements can be included later. I am trying to create a way to benchmark *relative* data quality as one moves into smaller geographies and more detailed crosstabs, and eliminate the worst observations while allowing one to preserve most of the study area.
+
 - [ ] Mean and median CVs; changes with geography, variable detail, and dropped outliers.
 - [ ] Changes in map accuracy with dropped outliers (we know the story for geography and variable detail).
+- [ ] CV Viewer
