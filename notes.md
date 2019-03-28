@@ -114,11 +114,13 @@ Finally figured out how to plot a spatial link matrix!
 
 The CV followed by three attempts to identify outliers.
 
-![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/sp_outlier.png "Percentage difference from neighbors")
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/cv.png "Percentage difference from neighbors") <!-- .element height="50%" width="50%" -->
 
-![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/first_moran.png "Local Moran's i p-values, first-order")
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/sp_outlier.png "Percentage difference from neighbors") <!-- .element height="50%" width="50%" -->
 
-![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/second_moran.png "Local Moran's i p-values, second-order")
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/first_moran.png "Local Moran's i p-values, first-order") <!-- .element height="50%" width="50%" -->
+
+![alt text](https://github.com/addisonlarson/data_quality_toolkit/raw/master/figs/second_moran.png "Local Moran's i p-values, second-order") <!-- .element height="50%" width="50%" -->
 
 One might ask why we don't simply set a maximum acceptable CV. Certainly it's worth looking into maximum acceptable ceilings, and for larger geos and less detailed variables every CV could theoretically be acceptable. These refinements can be included later. I am trying to create a way to benchmark *relative* data quality as one moves into smaller geographies and more detailed crosstabs, and eliminate the worst observations while allowing one to preserve most of the study area.
 
