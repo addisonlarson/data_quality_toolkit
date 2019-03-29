@@ -34,10 +34,10 @@ for(item in 1:length(var_list)){
   for(geo in geo_list){
     threshold <- NULL
     if(geo == "block group"){
-      threshold <- 100
+      threshold <- 80
       study_area <- a_bg
     } else {
-      threshold <- 80
+      threshold <- 60
       study_area <- a_trct
     }
     a <- get_acs(geography = geo,
@@ -62,15 +62,15 @@ for(item in 1:length(var_list)){
       diff <- (self_properties - nb_properties) /
         ((self_properties + nb_properties) / 2) * 100
       if(diff >= 40){
-        flag <- c(flag, 1)
+        flag <- c(flag, "Yes")
       } else {
-        flag <- c(flag, 0)
+        flag <- c(flag, "No")
       }
     }
     print(summary(a$cv))
     a$sp_outlier <- flag
     a <- a %>%
-      mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, 1, 0))) %>%
+      mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, "Yes", "No"))) %>%
       mutate(cv_cat = case_when(cv <= 15 ~ "0-15",
                                 cv > 15 & cv <= 30 ~ "15.1-30",
                                 cv > 30 & cv <= 60 ~ "30.1-60",

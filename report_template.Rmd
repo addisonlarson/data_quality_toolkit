@@ -34,11 +34,11 @@ geo_chars <- nchar(a$GEOID[1])
 geo <- NULL
 if(geo_chars == 11){
   geo <- "Tract"
-  threshold <- 80
+  threshold <- 60
   study_area <- a_trct
 } else if (geo_chars == 12){
   geo <- "Block Group"
-  threshold <- 100
+  threshold <- 80
   study_area <- a_bg
 }
 ```
@@ -55,14 +55,14 @@ for(j in 1:length(a_nb)){
   diff <- (self_properties - nb_properties) /
     ((self_properties + nb_properties) / 2) * 100
   if(diff >= 40){
-    flag <- c(flag, 1)
+    flag <- c(flag, "Yes")
     } else {
-      flag <- c(flag, 0)
+      flag <- c(flag, "No")
     }
   }
     a$sp_outlier <- flag
     a <- a %>%
-      mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, 1, 0))) %>%
+      mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, "Yes", "No"))) %>%
       mutate(cv_cat = case_when(cv <= 15 ~ "0-15",
                                 cv > 15 & cv <= 30 ~ "15.1-30",
                                 cv > 30 & cv <= 60 ~ "30.1-60",
@@ -97,18 +97,18 @@ kable(cv_tab)
 ```
 
 ### Spatial distribution of CVs and outliers
-
 ```{r plots}
 a <- a %>% mutate_at(vars(sp_outlier), as.factor)
 cv_plot <- ggplot(a) +
-  geom_sf(aes(fill = cv), lwd = 0) +
+  geom_sf(aes(fill = cv), color = NA) +
   coord_sf(datum = NA) +
   labs(title = "CV Values") +
   scale_fill_viridis("CV")
 outlier_plot <- ggplot(a) +
-  geom_sf(aes(fill = sp_outlier), lwd = 0) +
+  geom_sf(aes(fill = sp_outlier), color = NA) +
   coord_sf(datum = NA) +
   labs(title = "Outliers") +
-  scale_fill_discrete(name = "Outlier")
+  scale_fill_manual(values = c("gainsboro", "#45055B"), name = "Outlier")
+  # scale_fill_discrete(name = "Outlier")
 gridExtra::grid.arrange(cv_plot, outlier_plot, ncol = 2)
 ```

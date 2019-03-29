@@ -50,6 +50,7 @@ What would be the advantages or downsides of a comparative study? If there's a d
 - Data-driven regionalization (Seth Spielman)
 - Static mapping of uncertainty (Joe Francis)
 - Quantifying the expected error of maps (Joseph Salvo and Joel Alvarez)
+- "Touch method" (uses a first-order queen contiguity matrix) (Ken Hodges)
 - NYC FactFinder provides a "heads-up display" of data quality by greying out unreliable values.
 
 ## First sweep: Googling for "rank data quality"
@@ -125,7 +126,7 @@ The CV followed by three attempts to identify outliers.
 
 One might ask why we don't simply set a maximum acceptable CV. Certainly it's worth looking into maximum acceptable ceilings, and for larger geos and less detailed variables every CV could theoretically be acceptable. These refinements can be included later. I am trying to create a way to benchmark *relative* data quality as one moves into smaller geographies and more detailed crosstabs, and eliminate the worst observations while allowing one to preserve most of the study area.
 
-- [ ] Mean and median CVs; changes with geography, variable detail, and dropped outliers. *Tentative findings*: Dropped outliers certainly help improve CVs overall. More tests needed with different variables and geographies to iron out programming pitfalls.
-- [ ] Automated reports on data reliability. *Tentative findings*: R Markdown script is successful with ACS data; who knows about how it'll work with CTPP? I've selected some arbitrary CV thresholds (80 and 100%) that need further scrutiny. Should also ensure that the most important summary content is on the page.
+- [ ] Mean and median CVs; changes with geography, variable detail, and dropped outliers. *Tentative findings*: Dropped outliers certainly help improve CVs overall. More tests needed with different variables and geographies to iron out programming pitfalls. Note that you've baked some assumptions into this script and the one below. When an estimate is 0, we assign a CV of 100. If the percentage difference between an observation and its neighbors exceeds 40%, we call it an outlier. Additional geography-specific CV ceilings.
+- [ ] Automated reports on data reliability. *Tentative findings*: R Markdown script is successful with ACS data; who knows about how it'll work with CTPP? I've selected some arbitrary CV thresholds (60 and 80%) that need further scrutiny. Should also ensure that the most important summary content is on the page. Note that these scripts currently only work for block group and tract data.
 - [ ] Changes in map accuracy with dropped outliers (we know the story for geography and variable detail).
 - [ ] CV Viewer
