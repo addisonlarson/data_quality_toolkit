@@ -1,0 +1,7 @@
+file,geo,variable,tableid
+a,block group,No. Hispanic Residents,B03002
+a,tract,No. Hispanic Residents,B03002
+b,block group,"No. Residents, Commutes 30+ Minutes",B08303
+b,tract,"No. Residents, Commutes 30+ Minutes",B08303
+c,block group,"No. Residents, Commutes 60+ Minutes",B08303
+c,tract,"No. Residents, Commutes 60+ Minutes",B08303

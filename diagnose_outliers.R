@@ -8,9 +8,9 @@ library(spdep)
 a <- get_acs(geography = "tract",
              state = "DC",
              variable = "B08101_025") %>% # Count of transit commuters
-  mutate_at(vars(estimate), funs(na_if(., 0))) %>%
   mutate(se = moe / 1.645,
-         cv = se / estimate * 100,
+         cv = case_when(estimate == 0 ~ 100,
+                        estimate != 0 ~ se / estimate * 100),
          year = 2017) %>%
   drop_na(.)
 # 2015 data
@@ -18,9 +18,9 @@ b <- get_acs(geography = "tract",
              year = 2015,
              state = "DC",
              variable = "B08101_025") %>% # Count of transit commuters
-  mutate_at(vars(estimate), funs(na_if(., 0))) %>%
   mutate(se = moe / 1.645,
-         cv = se / estimate * 100,
+         cv = case_when(estimate == 0 ~ 100,
+                        estimate != 0 ~ se / estimate * 100),
          year = 2015) %>%
   drop_na(.)
 # 2013 data
@@ -28,9 +28,9 @@ c <- get_acs(geography = "tract",
              year = 2013,
              state = "DC",
              variable = "B08101_025") %>% # Count of transit commuters
-  mutate_at(vars(estimate), funs(na_if(., 0))) %>%
   mutate(se = moe / 1.645,
-         cv = se / estimate * 100,
+         cv = case_when(estimate == 0 ~ 100,
+                        estimate != 0 ~ se / estimate * 100),
          year = 2013) %>%
   drop_na(.)
 # 2011 data
@@ -38,9 +38,9 @@ d <- get_acs(geography = "tract",
              year = 2011,
              state = "DC",
              variable = "B08101_025") %>% # Count of transit commuters
-  mutate_at(vars(estimate), funs(na_if(., 0))) %>%
   mutate(se = moe / 1.645,
-         cv = se / estimate * 100,
+         cv = case_when(estimate == 0 ~ 100,
+                        estimate != 0 ~ se / estimate * 100),
          year = 2011) %>%
   drop_na(.)
 
@@ -83,9 +83,9 @@ a <- get_acs(geography = "tract",
              state = "DC",
              variable = "B08101_025",
              geometry = TRUE) %>% # Count of transit commuters
-  mutate_at(vars(estimate), funs(na_if(., 0))) %>%
   mutate(se = moe / 1.645,
-         cv = se / estimate * 100,
+         cv = case_when(estimate == 0 ~ 100,
+                        estimate != 0 ~ se / estimate * 100),
          year = 2017) %>%
   drop_na(.)
 a_spatial <- as(a, "Spatial")
@@ -100,11 +100,11 @@ disp_nb <- poly2nb(disp, queen = TRUE)
 disp_lag_nb <- nblag(disp_nb, 2)
 # png(here("figs", "first_order.png"), width = 5, height = 7, units = "in", res = 400)
 plot(disp, col = "gainsboro", main = "First-order links")
-plot(disp_lag_nb[[1]], test_coords, col = "darkolivegreen", add = TRUE)
+plot(disp_lag_nb[[1]], coords, col = "darkolivegreen", add = TRUE)
 # dev.off()
 # png(here("figs", "second_order.png"), width = 5, height = 7, units = "in", res = 400)
 plot(disp, col = "gainsboro", main = "Second-order links")
-plot(disp_lag_nb[[2]], test_coords, col = "darkolivegreen", add = TRUE)
+plot(disp_lag_nb[[2]], coords, col = "darkolivegreen", add = TRUE)
 # dev.off()
 # High percentage difference from neighbors
 flag <- vector()

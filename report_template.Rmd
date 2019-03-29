@@ -1,0 +1,114 @@
+---
+output: pdf_document
+params:
+  a: !r 1
+  b: !r 1
+  c: !r 1
+fontsize: 10pt
+geometry: margin = 0.75in
+---
+
+\pagenumbering{gobble}
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+library(knitr)
+library(here)
+library(tidyverse)
+library(sf)
+library(spdep)
+library(tigris)
+library(viridis)
+library(summarytools)
+options(tigris_class = "sf")
+theme_set(theme_minimal())
+a <- read_csv(here("dl_data", params$a)) %>%
+  mutate_at(vars(GEOID), as.character)
+a_trct <- st_read(here("dl_geo", "a_trct.shp")) %>%
+  mutate_at(vars(GEOID), as.character)
+a_bg <- st_read(here("dl_geo", "a_bg.shp")) %>%
+  mutate_at(vars(GEOID), as.character)
+geo_chars <- nchar(a$GEOID[1])
+geo <- NULL
+if(geo_chars == 11){
+  geo <- "Tract"
+  threshold <- 80
+  study_area <- a_trct
+} else if (geo_chars == 12){
+  geo <- "Block Group"
+  threshold <- 100
+  study_area <- a_bg
+}
+```
+
+```{r test}
+a <- left_join(study_area, a)
+a_spatial <- as(a, "Spatial")
+a_nb <- poly2nb(a_spatial, queen = TRUE)
+flag <- vector()
+for(j in 1:length(a_nb)){
+  sub <- a_nb[[j]]
+  nb_properties <- a %>% slice(sub) %>% pull(cv) %>% mean(.)
+  self_properties <- a %>% slice(j) %>% pull(cv) %>% mean(.)
+  diff <- (self_properties - nb_properties) /
+    ((self_properties + nb_properties) / 2) * 100
+  if(diff >= 40){
+    flag <- c(flag, 1)
+    } else {
+      flag <- c(flag, 0)
+    }
+  }
+    a$sp_outlier <- flag
+    a <- a %>%
+      mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, 1, 0))) %>%
+      mutate(cv_cat = case_when(cv <= 15 ~ "0-15",
+                                cv > 15 & cv <= 30 ~ "15.1-30",
+                                cv > 30 & cv <= 60 ~ "30.1-60",
+                                cv > 60 ~ "60.1+"))
+    no_adj <- a %>% st_set_geometry(NULL) %>%
+      summarize(mean(cv), median(cv), max(cv))
+    adj <- a %>% filter(sp_outlier == 0) %>%
+      st_set_geometry(NULL) %>%
+      summarize(mean(cv), median(cv), max(cv))
+```
+
+```{r var_title, results = "asis"}
+cat(paste0("## ", params$c, "---", params$b, "---", geo))
+```
+
+```{r main_summary, results = "asis"}
+CV <- a$cv
+descr(CV, style = "rmarkdown", stats = c("min", "med", "mean", "max"),
+      transpose = TRUE, display.labels = FALSE)
+```
+
+```{r outlier_tab}
+outlier_tab <- as.data.frame(table(a$sp_outlier))
+colnames(outlier_tab) <- c("Outlier Flag", "Count")
+kable(outlier_tab)
+```
+
+```{r cv_tab}
+cv_tab <- as.data.frame(table(a$cv_cat))
+colnames(cv_tab) <- c("CV Value", "Count")
+kable(cv_tab)
+```
+
+### Spatial distribution of CVs and outliers
+
+```{r plots}
+a <- a %>% mutate_at(vars(sp_outlier), as.factor)
+cv_plot <- ggplot(a) +
+  geom_sf(aes(fill = cv), lwd = 0) +
+  coord_sf(datum = NA) +
+  labs(title = "CV Values") +
+  scale_fill_viridis("CV")
+outlier_plot <- ggplot(a) +
+  geom_sf(aes(fill = sp_outlier), lwd = 0) +
+  coord_sf(datum = NA) +
+  labs(title = "Outliers") +
+  scale_fill_discrete(name = "Outlier")
+gridExtra::grid.arrange(cv_plot, outlier_plot, ncol = 2)
+```
