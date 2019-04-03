@@ -7,27 +7,6 @@
 - PA Counties: Bucks, Chester, Delaware, Montgomery, Philadelphia
 - NJ Counties: Burlington, Camden, Gloucester, Mercer
 
-### NCTCOG
-
-- TX Counties: Erath, Palo Pinto, Wise, Parker, Hood, Somervell, Denton, Tarrant, Johnson, Collin, Dallas, Ellis, Navarro, Hunt, Rockwall, Kaufman
-
-### TPB: DC Metro
-
-MD
-
-- Counties: Frederick, Montgomery, Prince George, Charles
-- Cities: Frederick, Gaithersburg, Rockville, College Park, Takoma Park, Laurel, Greenbelt, Bowie
-
-DC
-
-VA
-
-- Counties: Loudoun, Prince William, Fairfax, Arlington
-- Cities: Manassas, Manassas Park, Fairfax, Falls Church, Alexandria
-- Urbanized Areas: Fauquier County
-
-What would be the advantages or downsides of a comparative study? If there's a difference in the data quality, that's important to know -- after a couple of analyses, it'll be clear whether to stick with this or not.
-
 ## General ideas
 
 - Frame presentation in terms of a planning scenario.

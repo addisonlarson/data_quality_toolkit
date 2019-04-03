@@ -13,3 +13,5 @@ for(n in 1:nrow(inputfile_xwalk)){
          output_file = here("repts",
                             paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".pdf")))
   }
+
+# Note that the dl_geo file will need to be updated with each geography type

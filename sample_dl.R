@@ -3,58 +3,50 @@
 library(here)
 library(tidyverse)
 library(tidycensus)
-library(tigris)
-options(tigris_class = "sf")
-# VARIABLES
-# B03002_012 (Hispanic or Latino)
-# B08303_008 - 013 (Commutes 30+ minutes)
-# B08303_013 (Supercommuters)
-# GEOGRAPHIES
-# Block Group
-# Tract
-# County
-# STUDY AREA
-# District of Columbia
-# TBP Planning Area
+library(sf)
+options(stringsAsFactors = FALSE)
 
-var_list <- list("a" = "B03002_002",
-                 "b" = c("B08303_008",
-                         "B08303_009",
-                         "B08303_010",
-                         "B08303_011",
-                         "B08303_012",
-                         "B08303_013"),
-                 "c" = "B08303_013")
-geo_list <- c("tract", "block group")
+# Will be easy to iterate by dataset ID
 
-for(item in 1:length(var_list)){
-  for(geo in geo_list){
-    threshold <- NULL
-    if(geo == "block group"){
-      threshold <- 100
-    } else {
-      threshold <- 80
-    }
-    a <- get_acs(geography = geo,
-                 state = "DC",
-                 variables = var_list[[item]]) %>%
-      group_by(GEOID) %>%
-      summarize(sum_est = sum(estimate),
-                sum_moe = moe_sum(moe, estimate)) %>%
-      mutate_at(vars(sum_moe), funs(replace_na(., 0))) %>%
-      mutate(se = sum_moe / 1.645,
-             cv = case_when(sum_est == 0 ~ 100,
-                            sum_est != 0 ~ se / sum_est * 100))
-    write_csv(a, here("dl_data", paste0(names(var_list)[[item]], "_", geo,".csv")))
-  }
+# A101100 - Total Population
+dat <- st_read(here("raw", "tract", "A101100.shp")) %>%
+  st_set_geometry(NULL)
+detector <- ncol(dat) - 4 # Tells us how many additional columns we need to plan for -- some datasets are very wide
+iterator <- detector / 2
+
+for (u in seq(from = 5,
+              by = 2,
+              length.out = iterator)) {
+  temp_dat <- dat %>% select(geoid, u, u + 1)
+  names(temp_dat) <- c("GEOID", "sum_est", "sum_moe")
+  temp_dat <- temp_dat %>%
+    mutate(se = sum_moe / 1.645,
+           cv = case_when(sum_est == 0 ~ 100,
+                          sum_est != 0 ~ se / sum_est * 100)) %>%
+    write_csv(., here("dl_data", paste0("A101100",
+                                        "_",
+                                        u,
+                                        "_tract.csv")))
 }
 
-block_groups("DC", cb = TRUE) %>%
-  dplyr::select(-ALAND, -AWATER) %>%
-  st_write(., here("dl_geo", "a_bg.shp"))
-tracts("DC", cb = TRUE) %>%
-  dplyr::select(-ALAND, -AWATER) %>%
-  st_write(., here("dl_geo", "a_trct.shp"))
-counties("DC", cb = TRUE) %>%
-  dplyr::select(-ALAND, -AWATER) %>%
-  st_write(., here("dl_geo", "a_cty.shp"))
+# A101103 - Hispanic or Latino Origin
+dat <- st_read(here("raw", "tract", "A101103.shp")) %>%
+  st_set_geometry(NULL)
+detector <- ncol(dat) - 4 # Tells us how many additional columns we need to plan for -- some datasets are very wide
+iterator <- detector / 2
+
+for (u in seq(from = 5,
+              by = 2,
+              length.out = iterator)) {
+  temp_dat <- dat %>% select(geoid, u, u + 1)
+  names(temp_dat) <- c("GEOID", "sum_est", "sum_moe")
+  temp_dat <- temp_dat %>%
+    mutate(se = sum_moe / 1.645,
+           cv = case_when(sum_est == 0 ~ 100,
+                          sum_est != 0 ~ se / sum_est * 100)) %>%
+    write_csv(., here("dl_data", paste0("A101103",
+                                        "_",
+                                        u,
+                                        "_tract.csv")))
+}
+
