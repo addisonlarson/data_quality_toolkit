@@ -4,11 +4,12 @@ params:
   a: !r 1
   b: !r 1
   c: !r 1
+  d: !r 0
 fontsize: 10pt
 geometry: margin = 0.75in
 ---
 
-\pagenumbering{gobble}
+\setcounter{page}{`r params$d`}
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -28,7 +29,7 @@ a <- read_csv(here("dl_data", params$a)) %>%
   mutate_at(vars(GEOID), as.character)
 a_trct <- st_read(here("dl_geo", "a_trct.shp")) %>%
   mutate_at(vars(GEOID), as.character)
-a_bg <- st_read(here("dl_geo", "a_bg.shp")) %>%
+a_puma <- st_read(here("dl_geo", "a_puma.shp")) %>%
   mutate_at(vars(GEOID), as.character)
 geo_chars <- nchar(a$GEOID[1])
 geo <- NULL
@@ -36,10 +37,10 @@ if(geo_chars == 11){
   geo <- "Tract"
   threshold <- 60
   study_area <- a_trct
-} else if (geo_chars == 12){
-  geo <- "Block Group"
-  threshold <- 80
-  study_area <- a_bg
+} else if (geo_chars == 7){
+  geo <- "PUMA"
+  threshold <- 60
+  study_area <- a_puma
 }
 ```
 

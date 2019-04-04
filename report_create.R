@@ -9,7 +9,8 @@ for(n in 1:nrow(inputfile_xwalk)){
   render("report_template.Rmd",
          params = list(a = file_id,
                        b = inputfile_xwalk$variable[n],
-                       c = inputfile_xwalk$tableid[n]),
+                       c = inputfile_xwalk$tableid[n],
+                       d = n),
          output_file = here("repts",
                             paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".pdf")))
   }

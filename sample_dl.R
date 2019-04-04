@@ -2,51 +2,28 @@
 # simulate that here
 library(here)
 library(tidyverse)
-library(tidycensus)
 library(sf)
 options(stringsAsFactors = FALSE)
+geo <- "puma"
 
-# Will be easy to iterate by dataset ID
+tabs <- read_csv(here("inputfile_xwalk.csv")) %>%
+  filter(geo == geo) %>%
+  select(tableid) %>%
+  distinct(.) %>%
+  pull(.)
 
-# A101100 - Total Population
-dat <- st_read(here("raw", "tract", "A101100.shp")) %>%
-  st_set_geometry(NULL)
-detector <- ncol(dat) - 4 # Tells us how many additional columns we need to plan for -- some datasets are very wide
-iterator <- detector / 2
-
-for (u in seq(from = 5,
-              by = 2,
-              length.out = iterator)) {
-  temp_dat <- dat %>% select(geoid, u, u + 1)
-  names(temp_dat) <- c("GEOID", "sum_est", "sum_moe")
-  temp_dat <- temp_dat %>%
-    mutate(se = sum_moe / 1.645,
-           cv = case_when(sum_est == 0 ~ 100,
-                          sum_est != 0 ~ se / sum_est * 100)) %>%
-    write_csv(., here("dl_data", paste0("A101100",
-                                        "_",
-                                        u,
-                                        "_tract.csv")))
+for (t in tabs){
+  dat <- st_read(here("raw", paste0("./", geo, "/", t, ".shp"))) %>%
+    st_set_geometry(NULL)
+  detector <- ncol(dat) - 4 # Tells us how many additional columns we need to plan for -- some datasets are very wide
+  iterator <- detector / 2
+  for (u in seq(from = 5, by = 2, length.out = iterator)) {
+    temp_dat <- dat %>% select(geoid, u, u + 1)
+    names(temp_dat) <- c("GEOID", "sum_est", "sum_moe")
+    temp_dat <- temp_dat %>%
+      mutate(se = sum_moe / 1.645,
+             cv = case_when(sum_est == 0 ~ 100,
+                            sum_est != 0 ~ se / sum_est * 100)) %>%
+      write_csv(., here("dl_data", paste0(t, "_", u, "_", geo, ".csv")))
+  }
 }
-
-# A101103 - Hispanic or Latino Origin
-dat <- st_read(here("raw", "tract", "A101103.shp")) %>%
-  st_set_geometry(NULL)
-detector <- ncol(dat) - 4 # Tells us how many additional columns we need to plan for -- some datasets are very wide
-iterator <- detector / 2
-
-for (u in seq(from = 5,
-              by = 2,
-              length.out = iterator)) {
-  temp_dat <- dat %>% select(geoid, u, u + 1)
-  names(temp_dat) <- c("GEOID", "sum_est", "sum_moe")
-  temp_dat <- temp_dat %>%
-    mutate(se = sum_moe / 1.645,
-           cv = case_when(sum_est == 0 ~ 100,
-                          sum_est != 0 ~ se / sum_est * 100)) %>%
-    write_csv(., here("dl_data", paste0("A101103",
-                                        "_",
-                                        u,
-                                        "_tract.csv")))
-}
-
