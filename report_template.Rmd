@@ -23,6 +23,7 @@ library(spdep)
 library(tigris)
 library(viridis)
 library(summarytools)
+library(extrafont)
 options(tigris_class = "sf")
 theme_set(theme_minimal())
 a <- read_csv(here("dl_data", params$a)) %>%
@@ -30,6 +31,8 @@ a <- read_csv(here("dl_data", params$a)) %>%
 a_trct <- st_read(here("dl_geo", "a_trct.shp")) %>%
   mutate_at(vars(GEOID), as.character)
 a_puma <- st_read(here("dl_geo", "a_puma.shp")) %>%
+  mutate_at(vars(GEOID), as.character)
+a_cty <- st_read(here("dl_geo", "a_cty.shp")) %>%
   mutate_at(vars(GEOID), as.character)
 geo_chars <- nchar(a$GEOID[1])
 geo <- NULL
@@ -41,38 +44,46 @@ if(geo_chars == 11){
   geo <- "PUMA"
   threshold <- 60
   study_area <- a_puma
+} else if (geo_chars == 5){
+  geo <- "County"
+  threshold <- 60
+  study_area <- a_cty
 }
 ```
 
 ```{r test}
 a <- left_join(study_area, a)
-a_spatial <- as(a, "Spatial")
-a_nb <- poly2nb(a_spatial, queen = TRUE)
-flag <- vector()
-for(j in 1:length(a_nb)){
-  sub <- a_nb[[j]]
-  nb_properties <- a %>% slice(sub) %>% pull(cv) %>% mean(.)
-  self_properties <- a %>% slice(j) %>% pull(cv) %>% mean(.)
-  diff <- (self_properties - nb_properties) /
-    ((self_properties + nb_properties) / 2) * 100
-  if(diff >= 40){
-    flag <- c(flag, "Yes")
-    } else {
-      flag <- c(flag, "No")
+if(geo == "County"){
+  a <- a %>% mutate(sp_outlier = "No")
+} else {
+  a_spatial <- as(a, "Spatial")
+  a_nb <- poly2nb(a_spatial, queen = TRUE)
+  flag <- vector()
+  for(j in 1:length(a_nb)){
+    sub <- a_nb[[j]]
+    nb_properties <- a %>% slice(sub) %>% pull(cv) %>% mean(.)
+    self_properties <- a %>% slice(j) %>% pull(cv) %>% mean(.)
+    diff <- (self_properties - nb_properties) /
+      ((self_properties + nb_properties) / 2) * 100
+    if(diff >= 40){
+      flag <- c(flag, "Yes")
+      } else {
+        flag <- c(flag, "No")
+      }
     }
-  }
-    a$sp_outlier <- flag
-    a <- a %>%
-      mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, "Yes", "No"))) %>%
-      mutate(cv_cat = case_when(cv <= 15 ~ "0-15",
-                                cv > 15 & cv <= 30 ~ "15.1-30",
-                                cv > 30 & cv <= 60 ~ "30.1-60",
-                                cv > 60 ~ "60.1+"))
-    no_adj <- a %>% st_set_geometry(NULL) %>%
-      summarize(mean(cv), median(cv), max(cv))
-    adj <- a %>% filter(sp_outlier == 0) %>%
-      st_set_geometry(NULL) %>%
-      summarize(mean(cv), median(cv), max(cv))
+  a$sp_outlier <- flag
+}
+a <- a %>%
+  mutate_at(vars(sp_outlier), funs(ifelse(cv > threshold, "Yes", "No"))) %>%
+  mutate(cv_cat = case_when(cv <= 15 ~ "0-15",
+                            cv > 15 & cv <= 30 ~ "15.1-30",
+                            cv > 30 & cv <= 60 ~ "30.1-60",
+                            cv > 60 ~ "60.1+"))
+no_adj <- a %>% st_set_geometry(NULL) %>%
+  summarize(mean(cv), median(cv), max(cv))
+adj <- a %>% filter(sp_outlier == 0) %>%
+  st_set_geometry(NULL) %>%
+  summarize(mean(cv), median(cv), max(cv))
 ```
 
 ```{r var_title, results = "asis"}
@@ -87,29 +98,31 @@ descr(CV, style = "rmarkdown", stats = c("min", "med", "mean", "max"),
 
 ```{r outlier_tab}
 outlier_tab <- as.data.frame(table(a$sp_outlier))
-colnames(outlier_tab) <- c("Outlier Flag", "Count")
+colnames(outlier_tab) <- c("High CV Flag", "Count")
 kable(outlier_tab)
 ```
 
 ```{r cv_tab}
 cv_tab <- as.data.frame(table(a$cv_cat))
-colnames(cv_tab) <- c("CV Value", "Count")
+colnames(cv_tab) <- c("CV", "Count")
 kable(cv_tab)
 ```
 
-### Spatial distribution of CVs and outliers
+### Spatial distribution of CVs
 ```{r plots}
 a <- a %>% mutate_at(vars(sp_outlier), as.factor)
 cv_plot <- ggplot(a) +
   geom_sf(aes(fill = cv), color = NA) +
   coord_sf(datum = NA) +
-  labs(title = "CV Values") +
-  scale_fill_viridis("CV")
+  labs(title = "Coefficients of Variation") +
+  scale_fill_viridis("CV") +
+  theme(text = element_text(family = "CM Roman"))
 outlier_plot <- ggplot(a) +
   geom_sf(aes(fill = sp_outlier), color = NA) +
   coord_sf(datum = NA) +
-  labs(title = "Outliers") +
-  scale_fill_manual(values = c("gainsboro", "#45055B"), name = "Outlier")
+  labs(title = "High CVs") +
+  scale_fill_manual(values = c("gainsboro", "#45055B"), name = "Outlier") +
   # scale_fill_discrete(name = "Outlier")
+  theme(text = element_text(family = "CM Roman"))
 gridExtra::grid.arrange(cv_plot, outlier_plot, ncol = 2)
 ```

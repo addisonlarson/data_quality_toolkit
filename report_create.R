@@ -2,7 +2,13 @@ library(knitr)
 library(rmarkdown)
 library(here)
 library(tidyverse)
-inputfile_xwalk <- read_csv(here("inputfile_xwalk.csv"))
+inputfile_xwalk <- read_csv(here("inputfile_xwalk.csv")) %>%
+  mutate(order = case_when(inputfile_xwalk$geo == "cty" ~ "a",
+                           inputfile_xwalk$geo == "puma" ~ "b",
+                           inputfile_xwalk$geo == "tad" ~ "c",
+                           inputfile_xwalk$geo == "tract" ~ "d",
+                           inputfile_xwalk$geo == "taz" ~ "e")) %>%
+  arrange(file, order)
 
 for(n in 1:nrow(inputfile_xwalk)){
   file_id <- paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".csv")
@@ -12,7 +18,7 @@ for(n in 1:nrow(inputfile_xwalk)){
                        c = inputfile_xwalk$tableid[n],
                        d = n),
          output_file = here("repts",
-                            paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".pdf")))
+                            paste0(inputfile_xwalk$file[n], "_", order[n], ".pdf")))
   }
 
 # Note that the dl_geo file will need to be updated with each geography type

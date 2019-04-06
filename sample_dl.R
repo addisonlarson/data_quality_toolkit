@@ -4,7 +4,7 @@ library(here)
 library(tidyverse)
 library(sf)
 options(stringsAsFactors = FALSE)
-geo <- "puma"
+geo <- "cty"
 
 tabs <- read_csv(here("inputfile_xwalk.csv")) %>%
   filter(geo == geo) %>%
