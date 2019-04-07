@@ -34,6 +34,10 @@ a_puma <- st_read(here("dl_geo", "a_puma.shp")) %>%
   mutate_at(vars(GEOID), as.character)
 a_cty <- st_read(here("dl_geo", "a_cty.shp")) %>%
   mutate_at(vars(GEOID), as.character)
+a_taz <- st_read(here("dl_geo", "a_taz.shp")) %>%
+  mutate_at(vars(GEOID), as.character)
+a_tad <- st_read(here("dl_geo", "a_tad.shp")) %>%
+  mutate_at(vars(GEOID), as.character)
 geo_chars <- nchar(a$GEOID[1])
 geo <- NULL
 if(geo_chars == 11){
@@ -42,12 +46,20 @@ if(geo_chars == 11){
   study_area <- a_trct
 } else if (geo_chars == 7){
   geo <- "PUMA"
-  threshold <- 60
+  threshold <- 40
   study_area <- a_puma
 } else if (geo_chars == 5){
   geo <- "County"
-  threshold <- 60
+  threshold <- 40
   study_area <- a_cty
+} else if (geo_chars == 13){
+  geo <- "TAZ"
+  threshold <- 80
+  study_area <- a_taz
+} else {
+  geo <- "TAD"
+  threshold <- 40
+  study_area <- a_tad
 }
 ```
 
