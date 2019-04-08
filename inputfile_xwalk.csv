@@ -547,103 +547,6 @@ B111103_5,puma,Aggregate number of vehicles available,B111103
 B112103_5,puma,Mean household income in the past 12 months,B112103
 B112104_5,puma,Median household income in the past 12 months,B112104
 B112108_5,puma,Mean number of persons per household,B112108
-A102110_5,puma,All workers,A102110
-A102110_7,puma,Did not work at home,A102110
-A102110_9,puma,Less than 5 minutes,A102110
-A102110_11,puma,5 to 14 minutes,A102110
-A102110_13,puma,15 to 19 minutes,A102110
-A102110_15,puma,20 to 29 minutes,A102110
-A102110_17,puma,30 to 44 minutes,A102110
-A102110_19,puma,45 to 59 minutes,A102110
-A102110_21,puma,60 to 74 minutes,A102110
-A102110_23,puma,75 to 89 minutes,A102110
-A102110_25,puma,90 minutes or more,A102110
-A102110_27,puma,Worked at home,A102110
-A103100_5,puma,Total workers in households,A103100
-A105100_5,puma,"Total, all industries",A105100
-A105100_7,puma,"Agriculture, forestry, fishing and hunting, and mining",A105100
-A105100_9,puma,Construction,A105100
-A105100_11,puma,Manufacturing,A105100
-A105100_13,puma,Wholesale trade,A105100
-A105100_15,puma,Retail trade,A105100
-A105100_17,puma,"Transportation and warehousing, and utilities",A105100
-A105100_19,puma,Information,A105100
-A105100_21,puma,"Finance, insurance, real estate and rental and leasing",A105100
-A105100_23,puma,"Professional, scientific, management, administrative,  and waste management services",A105100
-A105100_25,puma,"Educational, health and social services",A105100
-A105100_27,puma,"Arts, entertainment, recreation, accommodation and food services",A105100
-A105100_29,puma,Other services (except public administration),A105100
-A105100_31,puma,Public administration,A105100
-A105100_33,puma,Armed forces,A105100
-A110100_5,puma,Total housing units,A110100
-A110104_5,puma,Total housing units,A110104
-A110104_7,puma,"1 unit, detached",A110104
-A110104_9,puma,"1 unit, attached",A110104
-A110104_11,puma,2 to 4 units,A110104
-A110104_13,puma,5 to 19 units,A110104
-A110104_15,puma,20 to 49 units,A110104
-A110104_17,puma,50 or more units,A110104
-A110104_19,puma,Mobile home,A110104
-A110104_21,puma,"Boat, RV, van, etc.",A110104
-A110105_5,puma,Total housing units,A110105
-A110105_7,puma,"Vacant, for rent",A110105
-A110105_9,puma,"Vacant, for sale only",A110105
-A110105_11,puma,"Vacant, for seasonal, recreational, or occasional use",A110105
-A110105_13,puma,All other vacant,A110105
-A110105_15,puma,Occupied,A110105
-A111101_5,puma,Total households,A111101
-A111101_7,puma,Owned with mortgage,A111101
-A111101_9,puma,Owned without mortgage,A111101
-A111101_11,puma,Rented,A111101
-A111101_13,puma,Occupied without rent,A111101
-A111102_5,puma,"Total, vehicles available",A111102
-A111102_7,puma,0 vehicles,A111102
-A111102_9,puma,1 vehicle,A111102
-A111102_11,puma,2 vehicles,A111102
-A111102_13,puma,3 vehicles,A111102
-A111102_15,puma,4-or-more vehicles,A111102
-A112100_5,puma,Total households,A112100
-A112101_5,puma,All households,A112101
-A112101_7,puma,No persons under age 18,A112101
-A112101_9,puma,1 person under age 18,A112101
-A112101_11,puma,2+ persons under age 18,A112101
-A112105_5,puma,"Total, all households",A112105
-A112105_7,puma,Married couple family household with householder 15 to 64 years,A112105
-A112105_9,puma,Married couple family household with householder 15 to 64 years: With own children under 18 years,A112105
-A112105_11,puma,Married couple family household with householder 15 to 64 years: No own children under 18 years,A112105
-A112105_13,puma,Married couple family household with householder 65 years and over,A112105
-A112105_15,puma,Married couple family household with householder 65 years and over: With own children under 18 years,A112105
-A112105_17,puma,Married couple family household with householder 65 years and over: No own children under 18 years,A112105
-A112105_19,puma,Other family household,A112105
-A112105_21,puma,Other family household: With own children under 18 years,A112105
-A112105_23,puma,Other family household: No own children under 18 years,A112105
-A112105_25,puma,Nonfamily household with householder 15 to 64 years,A112105
-A112105_27,puma,Nonfamily household with householder 15 to 64 years: Living alone,A112105
-A112105_29,puma,Nonfamily household with householder 15 to 64 years: Not living alone,A112105
-A112105_31,puma,Nonfamily household with householder 65 years and over,A112105
-A112105_33,puma,Nonfamily household with householder 65 years and over: Living alone,A112105
-A112105_35,puma,Nonfamily household with householder 65 years and over: Not living alone,A112105
-A112106_5,puma,Total households,A112106
-A112106_7,puma,1-person household,A112106
-A112106_9,puma,2-person household,A112106
-A112106_11,puma,3-person household,A112106
-A112106_13,puma,4-or-more person household,A112106
-A112107_5,puma,Population in households,A112107
-A112109_5,puma,"Total, number of workers in household",A112109
-A112109_7,puma,0 workers,A112109
-A112109_9,puma,1 worker,A112109
-A112109_11,puma,2 workers,A112109
-A112109_13,puma,3 workers,A112109
-A112109_15,puma,4-or-more workers,A112109
-A113100_5,puma,"Total, poverty status",A113100
-A113100_7,puma,Below 100 percent of the poverty level,A113100
-A113100_9,puma,100 to 149 percent of the poverty level,A113100
-A113100_11,puma,At or above 150 percent of the poverty level,A113100
-B107100_5,puma,"Workers per car, truck, or van",B107100
-B111103_5,puma,Aggregate number of vehicles available,B111103
-B112103_5,puma,Mean household income in the past 12 months,B112103
-B112104_5,puma,Median household income in the past 12 months,B112104
-B112108_5,puma,Mean number of persons per household,B112108
 A101100_5,tract,Total population (All persons),A101100
 A101102_5,tract,All persons,A101102
 A101102_7,tract,Living in urban area,A101102
@@ -782,52 +685,6 @@ A102108_83,tract,12:00 a.m. to 4:59 a.m.,A102108
 A102108_85,tract,Worked at home,A102108
 A102109_5,tract,"Total, usual hours worked per week",A102109
 A102109_7,tract,Usually worked 1 to 14 hours per week,A102109
-A102109_9,tract,Usually worked 15 to 20 hours per week,A102109
-A102109_11,tract,Usually worked 21 to 34 hours per week,A102109
-A102109_13,tract,Usually worked 35 to 40 hours per week,A102109
-A102109_15,tract,Usually worked 41 to 55 hours per week,A102109
-A102109_17,tract,Usually worked 56 hours or more per week,A102109
-A102110_5,tract,All workers,A102110
-A102110_7,tract,Did not work at home,A102110
-A102110_9,tract,Less than 5 minutes,A102110
-A102110_11,tract,5 to 14 minutes,A102110
-A102110_13,tract,15 to 19 minutes,A102110
-A102110_15,tract,20 to 29 minutes,A102110
-A102110_17,tract,30 to 44 minutes,A102110
-A102110_19,tract,45 to 59 minutes,A102110
-A102110_21,tract,60 to 74 minutes,A102110
-A102110_23,tract,75 to 89 minutes,A102110
-A102110_25,tract,90 minutes or more,A102110
-A102110_27,tract,Worked at home,A102110
-A103100_5,tract,Total workers in households,A103100
-A111102_5,tract,"Total, vehicles available",A111102
-A111102_7,tract,0 vehicles,A111102
-A111102_9,tract,1 vehicle,A111102
-A111102_11,tract,2 vehicles,A111102
-A111102_13,tract,3 vehicles,A111102
-A111102_15,tract,4-or-more vehicles,A111102
-A112100_5,tract,Total households,A112100
-A112101_5,tract,All households,A112101
-A112101_7,tract,No persons under age 18,A112101
-A112101_9,tract,1 person under age 18,A112101
-A112101_11,tract,2+ persons under age 18,A112101
-A112106_5,tract,Total households,A112106
-A112106_7,tract,1-person household,A112106
-A112106_9,tract,2-person household,A112106
-A112106_11,tract,3-person household,A112106
-A112106_13,tract,4-or-more person household,A112106
-A112109_5,tract,"Total, number of workers in household",A112109
-A112109_7,tract,0 workers,A112109
-A112109_9,tract,1 worker,A112109
-A112109_11,tract,2 workers,A112109
-A112109_13,tract,3 workers,A112109
-A112109_15,tract,4-or-more workers,A112109
-A113100_5,tract,"Total, poverty status",A113100
-A113100_7,tract,Below 100 percent of the poverty level,A113100
-A113100_9,tract,100 to 149 percent of the poverty level,A113100
-A113100_11,tract,At or above 150 percent of the poverty level,A113100
-B111103_5,tract,Aggregate number of vehicles available,B111103
-B112108_5,tract,Mean number of persons per household,B112108
 A102109_9,tract,Usually worked 15 to 20 hours per week,A102109
 A102109_11,tract,Usually worked 21 to 34 hours per week,A102109
 A102109_13,tract,Usually worked 35 to 40 hours per week,A102109
@@ -1196,52 +1053,6 @@ A102108_83,tad,12:00 a.m. to 4:59 a.m.,A102108
 A102108_85,tad,Worked at home,A102108
 A102109_5,tad,"Total, usual hours worked per week",A102109
 A102109_7,tad,Usually worked 1 to 14 hours per week,A102109
-A102109_9,tad,Usually worked 15 to 20 hours per week,A102109
-A102109_11,tad,Usually worked 21 to 34 hours per week,A102109
-A102109_13,tad,Usually worked 35 to 40 hours per week,A102109
-A102109_15,tad,Usually worked 41 to 55 hours per week,A102109
-A102109_17,tad,Usually worked 56 hours or more per week,A102109
-A102110_5,tad,All workers,A102110
-A102110_7,tad,Did not work at home,A102110
-A102110_9,tad,Less than 5 minutes,A102110
-A102110_11,tad,5 to 14 minutes,A102110
-A102110_13,tad,15 to 19 minutes,A102110
-A102110_15,tad,20 to 29 minutes,A102110
-A102110_17,tad,30 to 44 minutes,A102110
-A102110_19,tad,45 to 59 minutes,A102110
-A102110_21,tad,60 to 74 minutes,A102110
-A102110_23,tad,75 to 89 minutes,A102110
-A102110_25,tad,90 minutes or more,A102110
-A102110_27,tad,Worked at home,A102110
-A103100_5,tad,Total workers in households,A103100
-A111102_5,tad,"Total, vehicles available",A111102
-A111102_7,tad,0 vehicles,A111102
-A111102_9,tad,1 vehicle,A111102
-A111102_11,tad,2 vehicles,A111102
-A111102_13,tad,3 vehicles,A111102
-A111102_15,tad,4-or-more vehicles,A111102
-A112100_5,tad,Total households,A112100
-A112101_5,tad,All households,A112101
-A112101_7,tad,No persons under age 18,A112101
-A112101_9,tad,1 person under age 18,A112101
-A112101_11,tad,2+ persons under age 18,A112101
-A112106_5,tad,Total households,A112106
-A112106_7,tad,1-person household,A112106
-A112106_9,tad,2-person household,A112106
-A112106_11,tad,3-person household,A112106
-A112106_13,tad,4-or-more person household,A112106
-A112109_5,tad,"Total, number of workers in household",A112109
-A112109_7,tad,0 workers,A112109
-A112109_9,tad,1 worker,A112109
-A112109_11,tad,2 workers,A112109
-A112109_13,tad,3 workers,A112109
-A112109_15,tad,4-or-more workers,A112109
-A113100_5,tad,"Total, poverty status",A113100
-A113100_7,tad,Below 100 percent of the poverty level,A113100
-A113100_9,tad,100 to 149 percent of the poverty level,A113100
-A113100_11,tad,At or above 150 percent of the poverty level,A113100
-B111103_5,tad,Aggregate number of vehicles available,B111103
-B112108_5,tad,Mean number of persons per household,B112108
 A102109_9,tad,Usually worked 15 to 20 hours per week,A102109
 A102109_11,tad,Usually worked 21 to 34 hours per week,A102109
 A102109_13,tad,Usually worked 35 to 40 hours per week,A102109

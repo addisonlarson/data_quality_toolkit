@@ -10,6 +10,15 @@ inputfile_xwalk <- read_csv(here("inputfile_xwalk.csv")) %>%
                            geo == "taz" ~ "e"),
          tableno = as.numeric(str_sub(file, 9, -1))) %>%
   arrange(tableid, tableno, order)
+# Modification: only keep tables available at all geos
+keep_vars <- inputfile_xwalk %>%
+  group_by(tableid, tableno) %>%
+  summarize(available = n()) %>%
+  filter(available == 5) %>%
+  pull(tableid) %>%
+  unique(.)
+inputfile_xwalk <- inputfile_xwalk %>%
+  filter(tableid %in% keep_vars)
 
 for(n in 1:nrow(inputfile_xwalk)){
   file_id <- paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".csv")
