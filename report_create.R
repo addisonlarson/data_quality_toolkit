@@ -3,12 +3,13 @@ library(rmarkdown)
 library(here)
 library(tidyverse)
 inputfile_xwalk <- read_csv(here("inputfile_xwalk.csv")) %>%
-  mutate(order = case_when(inputfile_xwalk$geo == "cty" ~ "a",
-                           inputfile_xwalk$geo == "puma" ~ "b",
-                           inputfile_xwalk$geo == "tad" ~ "c",
-                           inputfile_xwalk$geo == "tract" ~ "d",
-                           inputfile_xwalk$geo == "taz" ~ "e")) %>%
-  arrange(file, order)
+  mutate(order = case_when(geo == "cty" ~ "a",
+                           geo == "puma" ~ "b",
+                           geo == "tad" ~ "c",
+                           geo == "tract" ~ "d",
+                           geo == "taz" ~ "e"),
+         tableno = as.numeric(str_sub(file, 9, -1))) %>%
+  arrange(tableid, tableno, order)
 
 for(n in 1:nrow(inputfile_xwalk)){
   file_id <- paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".csv")
