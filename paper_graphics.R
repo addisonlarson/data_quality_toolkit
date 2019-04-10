@@ -28,6 +28,7 @@ ggplot(d) +
   theme(legend.position = "none") +
   scale_fill_manual(values = c("gainsboro", "#45055B")) +
   geom_sf(aes(fill = destination), color = NA) +
+  geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA) +
   ggtitle("Location of Census Tract 4.02")
 ggsave(here("figs", "destination.png"), width = 4.5, height = 4.5, units = "in", dpi = 400)
@@ -94,14 +95,15 @@ bike <- inner_join(d, bike) %>%
 
 destination <- bike %>% filter(destination == "Yes")
 
-ggplot(bike) +
+ggplot() +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank()) +
-  geom_sf(aes(fill = sub_est), color = NA) +
+  geom_sf(data = bike, aes(fill = sub_est), color = NA) +
   scale_fill_viridis("Estimate", na.value = "gainsboro", limits = c(0,50)) +
   labs(title = "Estimated bicycle commuters by census tract",
        subtitle = "Black tract is destination") +
   geom_sf(data = destination, fill = "black", color = NA) +
+  geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA) +
 ggsave(here("figs", "bikers.png"), width = 4.5, height = 4.5, units = "in", dpi = 400)
 

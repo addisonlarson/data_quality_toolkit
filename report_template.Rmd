@@ -46,19 +46,19 @@ if(geo_chars == 11){
   study_area <- a_trct
 } else if (geo_chars == 7){
   geo <- "PUMA"
-  threshold <- 40
+  threshold <- 30
   study_area <- a_puma
 } else if (geo_chars == 5){
   geo <- "County"
-  threshold <- 40
+  threshold <- 30
   study_area <- a_cty
 } else if (geo_chars == 13){
   geo <- "TAZ"
-  threshold <- 80
+  threshold <- 60
   study_area <- a_taz
 } else {
   geo <- "TAD"
-  threshold <- 40
+  threshold <- 30
   study_area <- a_tad
 }
 ```
@@ -128,13 +128,13 @@ cv_plot <- ggplot(a) +
   coord_sf(datum = NA) +
   labs(title = "Coefficients of Variation") +
   scale_fill_viridis("CV") +
-  theme(text = element_text(family = "CM Roman"))
+  theme(text = element_text(family = "CM Roman", size = 10))
 outlier_plot <- ggplot(a) +
   geom_sf(aes(fill = sp_outlier), color = NA) +
   coord_sf(datum = NA) +
   labs(title = "High CVs") +
   scale_fill_manual(values = c("gainsboro", "#45055B"), name = "Outlier") +
   # scale_fill_discrete(name = "Outlier")
-  theme(text = element_text(family = "CM Roman"))
+  theme(text = element_text(family = "CM Roman", size = 10))
 gridExtra::grid.arrange(cv_plot, outlier_plot, ncol = 2)
 ```
