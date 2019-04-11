@@ -3,6 +3,7 @@ library(rmarkdown)
 library(here)
 library(tidyverse)
 inputfile_xwalk <- read_csv(here("inputfile_xwalk.csv")) %>%
+  distinct(.) %>%
   mutate(order = case_when(geo == "cty" ~ "a",
                            geo == "puma" ~ "b",
                            geo == "tad" ~ "c",

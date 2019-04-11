@@ -4,7 +4,8 @@ library(here)
 library(tidyverse)
 library(sf)
 options(stringsAsFactors = FALSE)
-g <- "tad"
+g <- "tract"
+type <- "workplace"
 
 tabs <- read_csv(here("inputfile_xwalk.csv")) %>%
   filter(geo == g) %>%
@@ -13,7 +14,7 @@ tabs <- read_csv(here("inputfile_xwalk.csv")) %>%
   pull(.)
 
 for (t in tabs){
-  dat <- st_read(here("raw", paste0(g, "/", t, ".shp"))) %>%
+  dat <- st_read(here("raw", type, paste0(g, "/", t, ".shp"))) %>%
     st_set_geometry(NULL)
   detector <- ncol(dat) - 4 # Tells us how many additional columns we need to plan for -- some datasets are very wide
   iterator <- detector / 2
