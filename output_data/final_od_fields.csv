@@ -1,0 +1,217 @@
+file,geo,variable,tableid,tableno
+A302100_3,cty,Total workers,A302100,3
+A302103_3,cty,"Total, means of transportation",A302103,3
+A302103_5,cty,"Car, truck, or van -- Drove alone",A302103,5
+A302103_7,cty,"Car, truck, or van -- In a 2-person carpool",A302103,7
+A302103_9,cty,"Car, truck, or van -- In a 3-person carpool",A302103,9
+A302103_11,cty,"Car, truck, or van -- In a 4-person carpool",A302103,11
+A302103_13,cty,"Car, truck, or van -- In a 5-or-6-person carpool",A302103,13
+A302103_15,cty,"Car, truck, or van -- In a 7-or-more-person carpool",A302103,15
+A302103_17,cty,Bus or trolley bus,A302103,17
+A302103_19,cty,Streetcar or trolley car,A302103,19
+A302103_21,cty,Subway or elevated,A302103,21
+A302103_23,cty,Railroad,A302103,23
+A302103_25,cty,Ferryboat,A302103,25
+A302103_27,cty,Bicycle,A302103,27
+A302103_29,cty,Walked,A302103,29
+A302103_31,cty,Taxicab,A302103,31
+A302103_33,cty,Motorcycle,A302103,33
+A302103_35,cty,Other method,A302103,35
+A302103_37,cty,Worked at home,A302103,37
+B302102_3,cty,"Total, all industries",B302102,3
+B302102_5,cty,"Agriculture, forestry, fishing and hunting, and mining; + Construction; + Armed Forces",B302102,5
+B302102_7,cty,Manufacturing;,B302102,7
+B302102_9,cty,"Wholesale trade; + Retail Trade; + Transportation and warehousing, and utilities",B302102,9
+B302102_11,cty,"Information; + Finance, insurance, real estate and rental and leasing; + Professional, scientific, management, administrative, and waste management services",B302102,11
+B302102_13,cty,"Educational, health and social services",B302102,13
+B302102_15,cty,"Arts, entertainment, recreation, accommodation and food services",B302102,15
+B302102_17,cty,Other services (except public administration); + Public Administration,B302102,17
+B302104_3,cty,All workers,B302104,3
+B302104_5,cty,Did not work at home:,B302104,5
+B302104_7,cty,5:00 a.m. to  5:29 a.m.,B302104,7
+B302104_9,cty,5:30 a.m. to  5:59 a.m.,B302104,9
+B302104_11,cty,6:00 a.m. to  6:29 a.m.,B302104,11
+B302104_13,cty,6:30 a.m. to  6:59 a.m.,B302104,13
+B302104_15,cty,7:00 a.m. to  7:29 a.m.,B302104,15
+B302104_17,cty,7:30 a.m. to 7:59 a.m.,B302104,17
+B302104_19,cty,8:00 a.m. to  8:29 a.m.,B302104,19
+B302104_21,cty,8:30 a.m. to 8:59 a.m.,B302104,21
+B302104_23,cty,9:00 a.m. to  9:59 a.m.,B302104,23
+B302104_25,cty,10:00 a.m. to 10:59 a.m.,B302104,25
+B302104_27,cty,11:00 a.m. to 11:59 a.m.,B302104,27
+B302104_29,cty,12:00 p.m. to  3:59 p.m.,B302104,29
+B302104_31,cty,4:00 p.m. to 11:59 p.m.,B302104,31
+B302104_33,cty,12:00 a.m. to 4:59 a.m.,B302104,33
+B302104_35,cty,Worked at home,B302104,35
+B302105_3,cty,Total persons,B302105,3
+B302105_5,cty,"White alone, not Hispanic/Latino",B302105,5
+B302105_7,cty,Other,B302105,7
+B302106_3,cty,All workers,B302106,3
+B302106_5,cty,Did not work at home,B302106,5
+B302106_7,cty,Less than 5 minutes,B302106,7
+B302106_9,cty,5 to 14 minutes,B302106,9
+B302106_11,cty,15 to 19 minutes,B302106,11
+B302106_13,cty,20 to 29 minutes,B302106,13
+B302106_15,cty,30 to 44 minutes,B302106,15
+B302106_17,cty,45 to 59 minutes,B302106,17
+B302106_19,cty,60 to 74 minutes,B302106,19
+B302106_21,cty,75 to 89 minutes,B302106,21
+B302106_23,cty,90 minutes or more,B302106,23
+B302106_25,cty,Worked at home,B302106,25
+B303100_3,cty,"Total, household income",B303100,3
+B303100_5,cty,"Less than $15,000",B303100,5
+B303100_7,cty,"$15,000-$24,999",B303100,7
+B303100_9,cty,"$25,000-$34,999",B303100,9
+B303100_11,cty,"$35,000-$49,999",B303100,11
+B303100_13,cty,"$50,000-$74,999",B303100,13
+B303100_15,cty,"$75,000-$99,999",B303100,15
+B303100_17,cty,"$100,000-$149,999",B303100,17
+B303100_19,cty,"$150,000 or more",B303100,19
+B304100_3,cty,"Total, poverty status",B304100,3
+B304100_5,cty,Below 100 percent of the poverty level,B304100,5
+B304100_7,cty,100 to 149 percent of the poverty level,B304100,7
+B304100_9,cty,At or above 150 percent of the poverty level,B304100,9
+A302100_3,puma,Total workers,A302100,3
+A302103_3,puma,"Total, means of transportation",A302103,3
+A302103_5,puma,"Car, truck, or van -- Drove alone",A302103,5
+A302103_7,puma,"Car, truck, or van -- In a 2-person carpool",A302103,7
+A302103_9,puma,"Car, truck, or van -- In a 3-person carpool",A302103,9
+A302103_11,puma,"Car, truck, or van -- In a 4-person carpool",A302103,11
+A302103_13,puma,"Car, truck, or van -- In a 5-or-6-person carpool",A302103,13
+A302103_15,puma,"Car, truck, or van -- In a 7-or-more-person carpool",A302103,15
+A302103_17,puma,Bus or trolley bus,A302103,17
+A302103_19,puma,Streetcar or trolley car,A302103,19
+A302103_21,puma,Subway or elevated,A302103,21
+A302103_23,puma,Railroad,A302103,23
+A302103_25,puma,Ferryboat,A302103,25
+A302103_27,puma,Bicycle,A302103,27
+A302103_29,puma,Walked,A302103,29
+A302103_31,puma,Taxicab,A302103,31
+A302103_33,puma,Motorcycle,A302103,33
+A302103_35,puma,Other method,A302103,35
+A302103_37,puma,Worked at home,A302103,37
+B302102_3,puma,"Total, all industries",B302102,3
+B302102_5,puma,"Agriculture, forestry, fishing and hunting, and mining; + Construction; + Armed Forces",B302102,5
+B302102_7,puma,Manufacturing;,B302102,7
+B302102_9,puma,"Wholesale trade; + Retail Trade; + Transportation and warehousing, and utilities",B302102,9
+B302102_11,puma,"Information; + Finance, insurance, real estate and rental and leasing; + Professional, scientific, management, administrative, and waste management services",B302102,11
+B302102_13,puma,"Educational, health and social services",B302102,13
+B302102_15,puma,"Arts, entertainment, recreation, accommodation and food services",B302102,15
+B302102_17,puma,Other services (except public administration); + Public Administration,B302102,17
+B302104_3,puma,All workers,B302104,3
+B302104_5,puma,Did not work at home:,B302104,5
+B302104_7,puma,5:00 a.m. to  5:29 a.m.,B302104,7
+B302104_9,puma,5:30 a.m. to  5:59 a.m.,B302104,9
+B302104_11,puma,6:00 a.m. to  6:29 a.m.,B302104,11
+B302104_13,puma,6:30 a.m. to  6:59 a.m.,B302104,13
+B302104_15,puma,7:00 a.m. to  7:29 a.m.,B302104,15
+B302104_17,puma,7:30 a.m. to 7:59 a.m.,B302104,17
+B302104_19,puma,8:00 a.m. to  8:29 a.m.,B302104,19
+B302104_21,puma,8:30 a.m. to 8:59 a.m.,B302104,21
+B302104_23,puma,9:00 a.m. to  9:59 a.m.,B302104,23
+B302104_25,puma,10:00 a.m. to 10:59 a.m.,B302104,25
+B302104_27,puma,11:00 a.m. to 11:59 a.m.,B302104,27
+B302104_29,puma,12:00 p.m. to  3:59 p.m.,B302104,29
+B302104_31,puma,4:00 p.m. to 11:59 p.m.,B302104,31
+B302104_33,puma,12:00 a.m. to 4:59 a.m.,B302104,33
+B302104_35,puma,Worked at home,B302104,35
+B302105_3,puma,Total persons,B302105,3
+B302105_5,puma,"White alone, not Hispanic/Latino",B302105,5
+B302105_7,puma,Other,B302105,7
+B302106_3,puma,All workers,B302106,3
+B302106_5,puma,Did not work at home,B302106,5
+B302106_7,puma,Less than 5 minutes,B302106,7
+B302106_9,puma,5 to 14 minutes,B302106,9
+B302106_11,puma,15 to 19 minutes,B302106,11
+B302106_13,puma,20 to 29 minutes,B302106,13
+B302106_15,puma,30 to 44 minutes,B302106,15
+B302106_17,puma,45 to 59 minutes,B302106,17
+B302106_19,puma,60 to 74 minutes,B302106,19
+B302106_21,puma,75 to 89 minutes,B302106,21
+B302106_23,puma,90 minutes or more,B302106,23
+B302106_25,puma,Worked at home,B302106,25
+B303100_3,puma,"Total, household income",B303100,3
+B303100_5,puma,"Less than $15,000",B303100,5
+B303100_7,puma,"$15,000-$24,999",B303100,7
+B303100_9,puma,"$25,000-$34,999",B303100,9
+B303100_11,puma,"$35,000-$49,999",B303100,11
+B303100_13,puma,"$50,000-$74,999",B303100,13
+B303100_15,puma,"$75,000-$99,999",B303100,15
+B303100_17,puma,"$100,000-$149,999",B303100,17
+B303100_19,puma,"$150,000 or more",B303100,19
+B304100_3,puma,"Total, poverty status",B304100,3
+B304100_5,puma,Below 100 percent of the poverty level,B304100,5
+B304100_7,puma,100 to 149 percent of the poverty level,B304100,7
+B304100_9,puma,At or above 150 percent of the poverty level,B304100,9
+A302100_3,tad,Total workers,A302100,3
+A302103_3,tad,"Total, means of transportation",A302103,3
+A302103_5,tad,"Car, truck, or van -- Drove alone",A302103,5
+A302103_7,tad,"Car, truck, or van -- In a 2-person carpool",A302103,7
+A302103_9,tad,"Car, truck, or van -- In a 3-person carpool",A302103,9
+A302103_11,tad,"Car, truck, or van -- In a 4-person carpool",A302103,11
+A302103_13,tad,"Car, truck, or van -- In a 5-or-6-person carpool",A302103,13
+A302103_15,tad,"Car, truck, or van -- In a 7-or-more-person carpool",A302103,15
+A302103_17,tad,Bus or trolley bus,A302103,17
+A302103_19,tad,Streetcar or trolley car,A302103,19
+A302103_21,tad,Subway or elevated,A302103,21
+A302103_23,tad,Railroad,A302103,23
+A302103_25,tad,Ferryboat,A302103,25
+A302103_27,tad,Bicycle,A302103,27
+A302103_29,tad,Walked,A302103,29
+A302103_31,tad,Taxicab,A302103,31
+A302103_33,tad,Motorcycle,A302103,33
+A302103_35,tad,Other method,A302103,35
+A302103_37,tad,Worked at home,A302103,37
+B302102_3,tad,"Total, all industries",B302102,3
+B302102_5,tad,"Agriculture, forestry, fishing and hunting, and mining; + Construction; + Armed Forces",B302102,5
+B302102_7,tad,Manufacturing;,B302102,7
+B302102_9,tad,"Wholesale trade; + Retail Trade; + Transportation and warehousing, and utilities",B302102,9
+B302102_11,tad,"Information; + Finance, insurance, real estate and rental and leasing; + Professional, scientific, management, administrative, and waste management services",B302102,11
+B302102_13,tad,"Educational, health and social services",B302102,13
+B302102_15,tad,"Arts, entertainment, recreation, accommodation and food services",B302102,15
+B302102_17,tad,Other services (except public administration); + Public Administration,B302102,17
+B302104_3,tad,All workers,B302104,3
+B302104_5,tad,Did not work at home:,B302104,5
+B302104_7,tad,5:00 a.m. to  5:29 a.m.,B302104,7
+B302104_9,tad,5:30 a.m. to  5:59 a.m.,B302104,9
+B302104_11,tad,6:00 a.m. to  6:29 a.m.,B302104,11
+B302104_13,tad,6:30 a.m. to  6:59 a.m.,B302104,13
+B302104_15,tad,7:00 a.m. to  7:29 a.m.,B302104,15
+B302104_17,tad,7:30 a.m. to 7:59 a.m.,B302104,17
+B302104_19,tad,8:00 a.m. to  8:29 a.m.,B302104,19
+B302104_21,tad,8:30 a.m. to 8:59 a.m.,B302104,21
+B302104_23,tad,9:00 a.m. to  9:59 a.m.,B302104,23
+B302104_25,tad,10:00 a.m. to 10:59 a.m.,B302104,25
+B302104_27,tad,11:00 a.m. to 11:59 a.m.,B302104,27
+B302104_29,tad,12:00 p.m. to  3:59 p.m.,B302104,29
+B302104_31,tad,4:00 p.m. to 11:59 p.m.,B302104,31
+B302104_33,tad,12:00 a.m. to 4:59 a.m.,B302104,33
+B302104_35,tad,Worked at home,B302104,35
+B302105_3,tad,Total persons,B302105,3
+B302105_5,tad,"White alone, not Hispanic/Latino",B302105,5
+B302105_7,tad,Other,B302105,7
+B302106_3,tad,All workers,B302106,3
+B302106_5,tad,Did not work at home,B302106,5
+B302106_7,tad,Less than 5 minutes,B302106,7
+B302106_9,tad,5 to 14 minutes,B302106,9
+B302106_11,tad,15 to 19 minutes,B302106,11
+B302106_13,tad,20 to 29 minutes,B302106,13
+B302106_15,tad,30 to 44 minutes,B302106,15
+B302106_17,tad,45 to 59 minutes,B302106,17
+B302106_19,tad,60 to 74 minutes,B302106,19
+B302106_21,tad,75 to 89 minutes,B302106,21
+B302106_23,tad,90 minutes or more,B302106,23
+B302106_25,tad,Worked at home,B302106,25
+B303100_3,tad,"Total, household income",B303100,3
+B303100_5,tad,"Less than $15,000",B303100,5
+B303100_7,tad,"$15,000-$24,999",B303100,7
+B303100_9,tad,"$25,000-$34,999",B303100,9
+B303100_11,tad,"$35,000-$49,999",B303100,11
+B303100_13,tad,"$50,000-$74,999",B303100,13
+B303100_15,tad,"$75,000-$99,999",B303100,15
+B303100_17,tad,"$100,000-$149,999",B303100,17
+B303100_19,tad,"$150,000 or more",B303100,19
+B304100_3,tad,"Total, poverty status",B304100,3
+B304100_5,tad,Below 100 percent of the poverty level,B304100,5
+B304100_7,tad,100 to 149 percent of the poverty level,B304100,7
+B304100_9,tad,At or above 150 percent of the poverty level,B304100,9

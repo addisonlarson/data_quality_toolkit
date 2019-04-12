@@ -6,7 +6,7 @@ library(sf)
 # Dissolve boundary
 region <- st_read(here("dl_geo", "a_cty.shp")) %>%
   st_union(.)
-  
+
 # Reliability by geography
 d_cty <- read_csv(here("dl_data", "A102101_5_cty.csv")) %>%
   mutate_at(vars(GEOID), as.character) %>%
@@ -113,3 +113,100 @@ sum_tab <- sum_tab[,2:ncol(sum_tab)] %>%
   as.data.frame(.) %>%
   write_csv(., here("output_data", "by_var_2.csv"))
 
+# Summary tables of data reliability by geography and table type
+inputfile_xwalk <- read_csv(here("inputfile_rac_xwalk.csv")) %>%
+  mutate(tableno = as.numeric(str_sub(file, 9, -1)))
+keep_vars <- inputfile_xwalk %>%
+  group_by(tableid, tableno) %>%
+  summarize(available = n()) %>%
+  filter(available == 5) %>%
+  pull(tableid) %>%
+  unique(.)
+inputfile_xwalk <- inputfile_xwalk %>%
+  filter(tableid %in% keep_vars) %>%
+  write_csv(., here("output_data", "final_rac_fields.csv"))
+full <- data.frame()
+for(n in 1:nrow(inputfile_xwalk)){
+  file_id <- paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".csv")
+  a <- inputfile_xwalk$geo[n]
+  b <- read_csv(here("dl_data", file_id)) %>%
+    mutate_at(vars(GEOID), as.character) %>%
+    mutate(geo = a)
+  full <- rbind(b, full)
+}
+full <- full %>%
+  mutate(cat = case_when(cv <= 15 ~ "0-15%",
+                         cv > 15 & cv <= 30 ~ "15.1-30%",
+                         cv > 30 & cv <= 60 ~ "30.1-60%",
+                         cv > 60 ~ "60.1+%")) %>%
+  group_by(geo, cat) %>%
+  summarize(n = n()) %>%
+  mutate(pct = round(n / sum(n) * 100, 3)) %>%
+  write_csv(., here("output_data", "final_rac_tab.csv"))
+
+inputfile_xwalk <- read_csv(here("inputfile_wac_xwalk.csv")) %>%
+  mutate(tableno = as.numeric(str_sub(file, 9, -1)))
+keep_vars <- inputfile_xwalk %>%
+  group_by(tableid, tableno) %>%
+  summarize(available = n()) %>%
+  filter(available == 5) %>%
+  pull(tableid) %>%
+  unique(.)
+inputfile_xwalk <- inputfile_xwalk %>%
+  filter(tableid %in% keep_vars) %>%
+  write_csv(., here("output_data", "final_wac_fields.csv"))
+full <- data.frame()
+for(n in 1:nrow(inputfile_xwalk)){
+  file_id <- paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".csv")
+  a <- inputfile_xwalk$geo[n]
+  b <- read_csv(here("dl_data", file_id)) %>%
+    mutate_at(vars(GEOID), as.character) %>%
+    mutate(geo = a)
+  full <- rbind(b, full)
+}
+full <- full %>%
+  mutate(cat = case_when(cv <= 15 ~ "0-15%",
+                         cv > 15 & cv <= 30 ~ "15.1-30%",
+                         cv > 30 & cv <= 60 ~ "30.1-60%",
+                         cv > 60 ~ "60.1+%")) %>%
+  group_by(geo, cat) %>%
+  summarize(n = n()) %>%
+  mutate(pct = round(n / sum(n) * 100, 3)) %>%
+  write_csv(., here("output_data", "final_wac_tab.csv"))
+
+inputfile_xwalk <- read_csv(here("inputfile_od_xwalk.csv")) %>%
+  distinct(.) %>%
+  mutate(tableno = as.numeric(str_sub(file, 9, -1)))
+# Modification: only keep tables available at all geos
+keep_vars <- inputfile_xwalk %>%
+  group_by(tableid, tableno) %>%
+  summarize(available = n()) %>%
+  filter(available == 3) %>%
+  pull(tableid) %>%
+  unique(.)
+inputfile_xwalk <- inputfile_xwalk %>%
+  filter(tableid %in% keep_vars)
+# Make a note of no. tables and no. fields
+length(keep_vars)
+write_csv(inputfile_xwalk, here("output_data", "final_od_fields.csv"))
+# Read all datasets for your table type (residence etc)
+full <- data.frame()
+for(n in 1:nrow(inputfile_xwalk)){
+  file_id <- paste0(inputfile_xwalk$file[n], "_", inputfile_xwalk$geo[n], ".csv")
+  a <- read_csv(here("dl_data", file_id)) %>%
+    mutate_at(vars(GEOID), as.character)
+  full <- rbind(a, full)
+}
+full <- full %>%
+  mutate(geo_chars = nchar(GEOID),
+         geo = case_when(geo_chars == 14 ~ "PUMA",
+                         geo_chars == 12 ~ "County",
+                         geo_chars == 23 ~ "TAD")) %>%
+  mutate(cat = case_when(cv <= 15 ~ "0-15%",
+                         cv > 15 & cv <= 30 ~ "15.1-30%",
+                         cv > 30 & cv <= 60 ~ "30.1-60%",
+                         cv > 60 ~ "60.1+%")) %>%
+  group_by(geo, cat) %>%
+  summarize(n = n()) %>%
+  mutate(pct = round(n / sum(n) * 100, 3))
+write_csv(full, here("output_data", "final_od_tab.csv"))

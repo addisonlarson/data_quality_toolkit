@@ -47,7 +47,7 @@ if(geo_chars == 11){
 } else if (geo_chars == 7){
   geo <- "PUMA"
   threshold <- 30
-  study_area <- a_puma
+  study_area <- a_powpuma
 } else if (geo_chars == 5){
   geo <- "County"
   threshold <- 30
@@ -134,7 +134,6 @@ outlier_plot <- ggplot(a) +
   coord_sf(datum = NA) +
   labs(title = "High CVs") +
   scale_fill_manual(values = c("gainsboro", "#45055B"), name = "Outlier") +
-  # scale_fill_discrete(name = "Outlier")
   theme(text = element_text(family = "CM Roman", size = 10))
 gridExtra::grid.arrange(cv_plot, outlier_plot, ncol = 2)
 ```

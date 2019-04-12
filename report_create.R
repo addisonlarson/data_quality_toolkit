@@ -2,16 +2,15 @@ library(knitr)
 library(rmarkdown)
 library(here)
 library(tidyverse)
-inputfile_xwalk <- read_csv(here("inputfile_xwalk.csv")) %>%
-  distinct(.) %>%
-  mutate(order = case_when(geo == "cty" ~ "a",
-                           geo == "puma" ~ "b",
-                           geo == "tad" ~ "c",
+inputfile_xwalk <- read_csv(here("inputfile_od_xwalk.csv")) %>%
+  mutate(order = case_when(geo == "cty"   ~ "a",
+                           geo == "puma"  ~ "b",
+                           geo == "tad"   ~ "c",
                            geo == "tract" ~ "d",
-                           geo == "taz" ~ "e"),
+                           geo == "taz"   ~ "e"),
          tableno = as.numeric(str_sub(file, 9, -1))) %>%
   arrange(tableid, tableno, order)
-# Modification: only keep tables available at all geos
+# Only keep tables available at all geos
 keep_vars <- inputfile_xwalk %>%
   group_by(tableid, tableno) %>%
   summarize(available = n()) %>%

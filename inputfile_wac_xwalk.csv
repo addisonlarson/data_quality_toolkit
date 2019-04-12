@@ -8,8 +8,8 @@ A202101_13,cty,25 to 34 years,A202101
 A202101_15,cty,35 to 44 years,A202101
 A202101_17,cty,45 to 59 years,A202101
 A202101_19,cty,60 to 64 years,A202101
-A202101_20,cty,65 to 74 years,A202101
-A202101_21,cty,75 years and over,A202101
+A202101_21,cty,65 to 74 years,A202101
+A202101_23,cty,75 years and over,A202101
 A202102_5,cty,"Total, all class of worker",A202102
 A202102_7,cty,Private for-profit wage and salary workers,A202102
 A202102_9,cty,Private not-for-profit wage and salary workers,A202102
@@ -216,223 +216,223 @@ B203102_11,cty,2 vehicles,B203102
 B203102_13,cty,3 vehicles,B203102
 B203102_15,cty,4-or-more vehicles,B203102
 B207100_5,cty,"Workers per car, truck, or van",B207100
-A202100_5,puma,Total population (All persons),A202100
-A202101_5,puma,"Total, all ages 16 years and over",A202101
-A202101_7,puma,16 and 17 years,A202101
-A202101_9,puma,18 to 20 years,A202101
-A202101_11,puma,21 to 24 years,A202101
-A202101_13,puma,25 to 34 years,A202101
-A202101_15,puma,35 to 44 years,A202101
-A202101_17,puma,45 to 59 years,A202101
-A202101_19,puma,60 to 64 years,A202101
-A202101_20,puma,65 to 74 years,A202101
-A202101_21,puma,75 years and over,A202101
-A202102_5,puma,"Total, all class of worker",A202102
-A202102_7,puma,Private for-profit wage and salary workers,A202102
-A202102_9,puma,Private not-for-profit wage and salary workers,A202102
-A202102_11,puma,Local government workers,A202102
-A202102_13,puma,State government workers,A202102
-A202102_15,puma,Federal government workers,A202102
-A202102_17,puma,Self-employed workers in own not incorporated businesses,A202102
-A202102_19,puma,"Self-emloyed workers in own, incorporated businesses",A202102
-A202102_21,puma,Unpaid family workers,A202102
-A202103_5,puma,"Total, workers' earnings in the past 12 months",A202103
-A202103_7,puma,"$1 to $9,999 or loss",A202103
-A202103_9,puma,"$10,000 to $14,999",A202103
-A202103_11,puma,"$15,000 to $24,999",A202103
-A202103_13,puma,"$25,000 to $34,999",A202103
-A202103_15,puma,"$35,000 to $49,999",A202103
-A202103_17,puma,"$50,000 to $64,999",A202103
-A202103_19,puma,"$65,000 to $74,999",A202103
-A202103_21,puma,"$75,000 to $99,999",A202103
-A202103_23,puma,"$100,000 or more",A202103
-A202103_25,puma,No earnings in the past 12 months,A202103
-A202104_5,puma,"Total, all industries",A202104
-A202104_7,puma,"Agriculture, forestry, fishing and hunting, and mining",A202104
-A202104_9,puma,Construction,A202104
-A202104_11,puma,Manufacturing,A202104
-A202104_13,puma,Wholesale trade,A202104
-A202104_15,puma,Retail trade,A202104
-A202104_17,puma,"Transportation and warehousing, and utilities",A202104
-A202104_19,puma,Information,A202104
-A202104_21,puma,"Finance, insurance, real estate and rental and leasing",A202104
-A202104_23,puma,"Professional, scientific, management, administrative,  and waste management services",A202104
-A202104_25,puma,"Educational, health and social services",A202104
-A202104_27,puma,"Arts, entertainment, recreation, accommodation and food services",A202104
-A202104_29,puma,Other services (except public administration),A202104
-A202104_31,puma,Public administration,A202104
-A202104_33,puma,Armed forces,A202104
-A202105_5,puma,"Total, means of transportation",A202105
-A202105_7,puma,"Car, truck, or van -- Drove alone",A202105
-A202105_9,puma,"Car, truck, or van -- In a 2-person carpool",A202105
-A202105_11,puma,"Car, truck, or van -- In a 3-person carpool",A202105
-A202105_13,puma,"Car, truck, or van -- In a 4-person carpool",A202105
-A202105_15,puma,"Car, truck, or van -- In a 5-or-6-person carpool",A202105
-A202105_17,puma,"Car, truck, or van -- In a 7-or-more-person carpool",A202105
-A202105_19,puma,Bus or trolley bus,A202105
-A202105_21,puma,Streetcar or trolley car,A202105
-A202105_23,puma,Subway or elevated,A202105
-A202105_25,puma,Railroad,A202105
-A202105_27,puma,Ferryboat,A202105
-A202105_29,puma,Bicycle,A202105
-A202105_31,puma,Walked,A202105
-A202105_33,puma,Taxicab,A202105
-A202105_35,puma,Motorcycle,A202105
-A202105_37,puma,Other method,A202105
-A202105_39,puma,Worked at home,A202105
-A202106_5,puma,"Total, all occupations",A202106
-A202106_7,puma,Management occupations,A202106
-A202106_9,puma,Farmers and farm managers,A202106
-A202106_11,puma,Business and financial operations specialists,A202106
-A202106_13,puma,Computer and mathematical occupations,A202106
-A202106_15,puma,Architecture and engineering occupations,A202106
-A202106_17,puma,"Life, physical, and social science occupations",A202106
-A202106_19,puma,Community and social service occupations,A202106
-A202106_21,puma,Legal occupations,A202106
-A202106_23,puma,"Education, training, and library occupations",A202106
-A202106_25,puma,"Arts, design, entertainment, sports, and media occupations",A202106
-A202106_27,puma,Healthcare practitioners and technicians occpuations,A202106
-A202106_29,puma,Healthcare support occupations,A202106
-A202106_31,puma,Protective service occupations,A202106
-A202106_33,puma,Food preparation and serving related occupations,A202106
-A202106_35,puma,Building and grounds cleaning and maintenance occupations,A202106
-A202106_37,puma,Personal care and service occupations,A202106
-A202106_39,puma,Sales and related occupations,A202106
-A202106_41,puma,Office and administrative support occupations,A202106
-A202106_43,puma,"Farming, fishing, and forestry occupations",A202106
-A202106_45,puma,Construction and extraction occupations,A202106
-A202106_47,puma,"Installation, maintenance, and repair occupations",A202106
-A202106_49,puma,Production occupations,A202106
-A202106_51,puma,Transportation and material moving occupations,A202106
-A202106_53,puma,Armed Forces,A202106
-A202107_5,puma,"Total persons, Hispanic/Latino origin",A202107
-A202107_7,puma,Hispanic or Latino,A202107
-A202107_9,puma,Not Hispanic or Latino,A202107
-A202108_5,puma,"Total, usual hours worked per week",A202108
-A202108_7,puma,Usually worked 1 to 14 hours per week,A202108
-A202108_9,puma,Usually worked 15 to 20 hours per week,A202108
-A202108_11,puma,Usually worked 21 to 34 hours per week,A202108
-A202108_13,puma,Usually worked 35 to 40 hours per week,A202108
-A202108_15,puma,Usually worked 41 to 55 hours per week,A202108
-A202108_17,puma,Usually worked 56 hours or more per week,A202108
-A202109_5,puma,"Total, length of US residence",A202109
-A202109_7,puma,"Born in the United States, Puerto Rico or the Island Areas, or Born Abroad to U.S. Citizen Parent(s)",A202109
-A202109_9,puma,In the US 2 years or less,A202109
-A202109_11,puma,In the US 3 to 5 years,A202109
-A202109_13,puma,In the US 6 to 9 years,A202109
-A202109_15,puma,In the US 10 or more years,A202109
-A202110_5,puma,All races,A202110
-A202110_7,puma,White alone,A202110
-A202110_9,puma,Black or African American alone,A202110
-A202110_11,puma,Asian alone,A202110
-A202110_13,puma,"All Other, i.e., 2 or more races, Native Hawaiian or Pacific Islander, American Indian or Alaska Native, Other race",A202110
-A202111_5,puma,Both sexes,A202111
-A202111_7,puma,Male,A202111
-A202111_9,puma,Female,A202111
-A202112_5,puma,All workers,A202112
-A202112_7,puma,Did not work at home,A202112
-A202112_9,puma,5:00 a.m. to 5:14 a.m.,A202112
-A202112_11,puma,5:15 a.m. to 5:29 a.m.,A202112
-A202112_13,puma,5:30 a.m. to 5:44 a.m.,A202112
-A202112_15,puma,5:45 a.m. to 5:59 a.m.,A202112
-A202112_17,puma,6:00 a.m. to 6:14 a.m.,A202112
-A202112_19,puma,6:15 a.m. to 6:29 a.m.,A202112
-A202112_21,puma,6:30 a.m. to 6:44 a.m.,A202112
-A202112_23,puma,6:45 a.m. to 6:59 a.m.,A202112
-A202112_25,puma,7:00 a.m. to 7:14 a.m.,A202112
-A202112_27,puma,7:15 a.m. to 7:29 a.m.,A202112
-A202112_29,puma,7:30 a.m. to 7:44 a.m.,A202112
-A202112_31,puma,7:45 a.m. to 7:59 a.m.,A202112
-A202112_33,puma,8:00 a.m. to 8:14 a.m.,A202112
-A202112_35,puma,8:15 a.m. to 8:29 a.m.,A202112
-A202112_37,puma,8:30 a.m. to 8:44 a.m.,A202112
-A202112_39,puma,8:45 a.m. to 8:59 a.m.,A202112
-A202112_41,puma,9:00 a.m. to 9:14 a.m.,A202112
-A202112_43,puma,9:15 a.m. to 9:29 a.m.,A202112
-A202112_45,puma,9:30 a.m. to 9:44 a.m.,A202112
-A202112_47,puma,9:45 a.m. to 9:59 a.m.,A202112
-A202112_49,puma,10:00 a.m. to 10:14 a.m.,A202112
-A202112_51,puma,10:15 a.m. to 10:29 a.m.,A202112
-A202112_53,puma,10:30 a.m. to 10:44 a.m.,A202112
-A202112_55,puma,10:45 a.m. to 10:59 a.m.,A202112
-A202112_57,puma,11:00 a.m. to 11:59 a.m.,A202112
-A202112_59,puma,12:00 p.m. to 12:59 p.m.,A202112
-A202112_61,puma,1:00 p.m. to 1:59 p.m.,A202112
-A202112_63,puma,2:00 p.m. to 2:59 p.m.,A202112
-A202112_65,puma,3:00 p.m. to 3:59 p.m.,A202112
-A202112_67,puma,4:00 p.m. to 4:59 p.m.,A202112
-A202112_69,puma,5:00 p.m. to 5:59 p.m.,A202112
-A202112_71,puma,6:00 p.m. to 6:59 p.m.,A202112
-A202112_73,puma,7:00 p.m. to 7:59 p.m.,A202112
-A202112_75,puma,8:00 p.m. to 8:59 p.m.,A202112
-A202112_77,puma,9:00 p.m. to 9:59 p.m.,A202112
-A202112_79,puma,10:00 p.m. to 10:59 p.m.,A202112
-A202112_81,puma,11:00 p.m. to 11:59 p.m.,A202112
-A202112_83,puma,12:00 a.m. to 4:59 a.m.,A202112
-A202112_85,puma,Worked at home,A202112
-A202113_5,puma,All workers,A202113
-A202113_7,puma,Did not work at home,A202113
-A202113_9,puma,Less than 5 minutes,A202113
-A202113_11,puma,5 to 14 minutes,A202113
-A202113_13,puma,15 to 19 minutes,A202113
-A202113_15,puma,20 to 29 minutes,A202113
-A202113_17,puma,30 to 44 minutes,A202113
-A202113_19,puma,45 to 59 minutes,A202113
-A202113_21,puma,60 to 74 minutes,A202113
-A202113_23,puma,75 to 89 minutes,A202113
-A202113_25,puma,90 minutes or more,A202113
-A202113_27,puma,Worked at home,A202113
-A203100_5,puma,Total workers in households,A203100
-A203103_5,puma,Aggregate vehicles per worker in household,A203103
-A203104_5,puma,Vehicles per household (average),A203104
-A205100_5,puma,"Total, all industries",A205100
-A205100_7,puma,"Agriculture, forestry, fishing and hunting, and mining",A205100
-A205100_9,puma,Construction,A205100
-A205100_11,puma,Manufacturing,A205100
-A205100_13,puma,Wholesale trade,A205100
-A205100_15,puma,Retail trade,A205100
-A205100_17,puma,"Transportation and warehousing, and utilities",A205100
-A205100_19,puma,Information,A205100
-A205100_21,puma,"Finance, insurance, real estate and rental and leasing",A205100
-A205100_23,puma,"Professional, scientific, management, administrative,  and waste management services",A205100
-A205100_25,puma,"Educational, health and social services",A205100
-A205100_27,puma,"Arts, entertainment, recreation, accommodation and food services",A205100
-A205100_29,puma,Other services (except public administration),A205100
-A205100_31,puma,Public administration,A205100
-A205100_33,puma,Armed forces,A205100
-B203101_5,puma,"Total, household income",B203101
-B203101_7,puma,"Less than $5,000",B203101
-B203101_9,puma,"$5,000-$9,999",B203101
-B203101_11,puma,"$10,000-$12,499",B203101
-B203101_13,puma,"$12,500-$14,999",B203101
-B203101_15,puma,"$15,000-$17,499",B203101
-B203101_17,puma,"$17,500-$19,999",B203101
-B203101_19,puma,"$20,000-$22,499",B203101
-B203101_21,puma,"$22,500-$24,999",B203101
-B203101_23,puma,"$25,000-$27,499",B203101
-B203101_25,puma,"$27,500-$29,999",B203101
-B203101_27,puma,"$30,000-$32,499",B203101
-B203101_29,puma,"$32,500-$34,999",B203101
-B203101_31,puma,"$35,000-$37,499",B203101
-B203101_33,puma,"$37,500-$39,999",B203101
-B203101_35,puma,"$40,000-$42,499",B203101
-B203101_37,puma,"$42,500-$44,999",B203101
-B203101_39,puma,"$45,000-$47,499",B203101
-B203101_41,puma,"$47,500-$49,999",B203101
-B203101_43,puma,"$50,000-$54,999",B203101
-B203101_45,puma,"$55,000-$59,999",B203101
-B203101_47,puma,"$60,000-$74,999",B203101
-B203101_49,puma,"$75,000-$99,999",B203101
-B203101_51,puma,"$100,000-$124,999",B203101
-B203101_53,puma,"$125,000-$149,999",B203101
-B203101_55,puma,"$150,000 or more",B203101
-B203102_5,puma,"Total, vehicles available",B203102
-B203102_7,puma,0 vehicles,B203102
-B203102_9,puma,1 vehicle,B203102
-B203102_11,puma,2 vehicles,B203102
-B203102_13,puma,3 vehicles,B203102
-B203102_15,puma,4-or-more vehicles,B203102
-B207100_5,puma,"Workers per car, truck, or van",B207100
+A202100_5,powpuma,Total population (All persons),A202100
+A202101_5,powpuma,"Total, all ages 16 years and over",A202101
+A202101_7,powpuma,16 and 17 years,A202101
+A202101_9,powpuma,18 to 20 years,A202101
+A202101_11,powpuma,21 to 24 years,A202101
+A202101_13,powpuma,25 to 34 years,A202101
+A202101_15,powpuma,35 to 44 years,A202101
+A202101_17,powpuma,45 to 59 years,A202101
+A202101_19,powpuma,60 to 64 years,A202101
+A202101_21,powpuma,65 to 74 years,A202101
+A202101_23,powpuma,75 years and over,A202101
+A202102_5,powpuma,"Total, all class of worker",A202102
+A202102_7,powpuma,Private for-profit wage and salary workers,A202102
+A202102_9,powpuma,Private not-for-profit wage and salary workers,A202102
+A202102_11,powpuma,Local government workers,A202102
+A202102_13,powpuma,State government workers,A202102
+A202102_15,powpuma,Federal government workers,A202102
+A202102_17,powpuma,Self-employed workers in own not incorporated businesses,A202102
+A202102_19,powpuma,"Self-emloyed workers in own, incorporated businesses",A202102
+A202102_21,powpuma,Unpaid family workers,A202102
+A202103_5,powpuma,"Total, workers' earnings in the past 12 months",A202103
+A202103_7,powpuma,"$1 to $9,999 or loss",A202103
+A202103_9,powpuma,"$10,000 to $14,999",A202103
+A202103_11,powpuma,"$15,000 to $24,999",A202103
+A202103_13,powpuma,"$25,000 to $34,999",A202103
+A202103_15,powpuma,"$35,000 to $49,999",A202103
+A202103_17,powpuma,"$50,000 to $64,999",A202103
+A202103_19,powpuma,"$65,000 to $74,999",A202103
+A202103_21,powpuma,"$75,000 to $99,999",A202103
+A202103_23,powpuma,"$100,000 or more",A202103
+A202103_25,powpuma,No earnings in the past 12 months,A202103
+A202104_5,powpuma,"Total, all industries",A202104
+A202104_7,powpuma,"Agriculture, forestry, fishing and hunting, and mining",A202104
+A202104_9,powpuma,Construction,A202104
+A202104_11,powpuma,Manufacturing,A202104
+A202104_13,powpuma,Wholesale trade,A202104
+A202104_15,powpuma,Retail trade,A202104
+A202104_17,powpuma,"Transportation and warehousing, and utilities",A202104
+A202104_19,powpuma,Information,A202104
+A202104_21,powpuma,"Finance, insurance, real estate and rental and leasing",A202104
+A202104_23,powpuma,"Professional, scientific, management, administrative,  and waste management services",A202104
+A202104_25,powpuma,"Educational, health and social services",A202104
+A202104_27,powpuma,"Arts, entertainment, recreation, accommodation and food services",A202104
+A202104_29,powpuma,Other services (except public administration),A202104
+A202104_31,powpuma,Public administration,A202104
+A202104_33,powpuma,Armed forces,A202104
+A202105_5,powpuma,"Total, means of transportation",A202105
+A202105_7,powpuma,"Car, truck, or van -- Drove alone",A202105
+A202105_9,powpuma,"Car, truck, or van -- In a 2-person carpool",A202105
+A202105_11,powpuma,"Car, truck, or van -- In a 3-person carpool",A202105
+A202105_13,powpuma,"Car, truck, or van -- In a 4-person carpool",A202105
+A202105_15,powpuma,"Car, truck, or van -- In a 5-or-6-person carpool",A202105
+A202105_17,powpuma,"Car, truck, or van -- In a 7-or-more-person carpool",A202105
+A202105_19,powpuma,Bus or trolley bus,A202105
+A202105_21,powpuma,Streetcar or trolley car,A202105
+A202105_23,powpuma,Subway or elevated,A202105
+A202105_25,powpuma,Railroad,A202105
+A202105_27,powpuma,Ferryboat,A202105
+A202105_29,powpuma,Bicycle,A202105
+A202105_31,powpuma,Walked,A202105
+A202105_33,powpuma,Taxicab,A202105
+A202105_35,powpuma,Motorcycle,A202105
+A202105_37,powpuma,Other method,A202105
+A202105_39,powpuma,Worked at home,A202105
+A202106_5,powpuma,"Total, all occupations",A202106
+A202106_7,powpuma,Management occupations,A202106
+A202106_9,powpuma,Farmers and farm managers,A202106
+A202106_11,powpuma,Business and financial operations specialists,A202106
+A202106_13,powpuma,Computer and mathematical occupations,A202106
+A202106_15,powpuma,Architecture and engineering occupations,A202106
+A202106_17,powpuma,"Life, physical, and social science occupations",A202106
+A202106_19,powpuma,Community and social service occupations,A202106
+A202106_21,powpuma,Legal occupations,A202106
+A202106_23,powpuma,"Education, training, and library occupations",A202106
+A202106_25,powpuma,"Arts, design, entertainment, sports, and media occupations",A202106
+A202106_27,powpuma,Healthcare practitioners and technicians occpuations,A202106
+A202106_29,powpuma,Healthcare support occupations,A202106
+A202106_31,powpuma,Protective service occupations,A202106
+A202106_33,powpuma,Food preparation and serving related occupations,A202106
+A202106_35,powpuma,Building and grounds cleaning and maintenance occupations,A202106
+A202106_37,powpuma,Personal care and service occupations,A202106
+A202106_39,powpuma,Sales and related occupations,A202106
+A202106_41,powpuma,Office and administrative support occupations,A202106
+A202106_43,powpuma,"Farming, fishing, and forestry occupations",A202106
+A202106_45,powpuma,Construction and extraction occupations,A202106
+A202106_47,powpuma,"Installation, maintenance, and repair occupations",A202106
+A202106_49,powpuma,Production occupations,A202106
+A202106_51,powpuma,Transportation and material moving occupations,A202106
+A202106_53,powpuma,Armed Forces,A202106
+A202107_5,powpuma,"Total persons, Hispanic/Latino origin",A202107
+A202107_7,powpuma,Hispanic or Latino,A202107
+A202107_9,powpuma,Not Hispanic or Latino,A202107
+A202108_5,powpuma,"Total, usual hours worked per week",A202108
+A202108_7,powpuma,Usually worked 1 to 14 hours per week,A202108
+A202108_9,powpuma,Usually worked 15 to 20 hours per week,A202108
+A202108_11,powpuma,Usually worked 21 to 34 hours per week,A202108
+A202108_13,powpuma,Usually worked 35 to 40 hours per week,A202108
+A202108_15,powpuma,Usually worked 41 to 55 hours per week,A202108
+A202108_17,powpuma,Usually worked 56 hours or more per week,A202108
+A202109_5,powpuma,"Total, length of US residence",A202109
+A202109_7,powpuma,"Born in the United States, Puerto Rico or the Island Areas, or Born Abroad to U.S. Citizen Parent(s)",A202109
+A202109_9,powpuma,In the US 2 years or less,A202109
+A202109_11,powpuma,In the US 3 to 5 years,A202109
+A202109_13,powpuma,In the US 6 to 9 years,A202109
+A202109_15,powpuma,In the US 10 or more years,A202109
+A202110_5,powpuma,All races,A202110
+A202110_7,powpuma,White alone,A202110
+A202110_9,powpuma,Black or African American alone,A202110
+A202110_11,powpuma,Asian alone,A202110
+A202110_13,powpuma,"All Other, i.e., 2 or more races, Native Hawaiian or Pacific Islander, American Indian or Alaska Native, Other race",A202110
+A202111_5,powpuma,Both sexes,A202111
+A202111_7,powpuma,Male,A202111
+A202111_9,powpuma,Female,A202111
+A202112_5,powpuma,All workers,A202112
+A202112_7,powpuma,Did not work at home,A202112
+A202112_9,powpuma,5:00 a.m. to 5:14 a.m.,A202112
+A202112_11,powpuma,5:15 a.m. to 5:29 a.m.,A202112
+A202112_13,powpuma,5:30 a.m. to 5:44 a.m.,A202112
+A202112_15,powpuma,5:45 a.m. to 5:59 a.m.,A202112
+A202112_17,powpuma,6:00 a.m. to 6:14 a.m.,A202112
+A202112_19,powpuma,6:15 a.m. to 6:29 a.m.,A202112
+A202112_21,powpuma,6:30 a.m. to 6:44 a.m.,A202112
+A202112_23,powpuma,6:45 a.m. to 6:59 a.m.,A202112
+A202112_25,powpuma,7:00 a.m. to 7:14 a.m.,A202112
+A202112_27,powpuma,7:15 a.m. to 7:29 a.m.,A202112
+A202112_29,powpuma,7:30 a.m. to 7:44 a.m.,A202112
+A202112_31,powpuma,7:45 a.m. to 7:59 a.m.,A202112
+A202112_33,powpuma,8:00 a.m. to 8:14 a.m.,A202112
+A202112_35,powpuma,8:15 a.m. to 8:29 a.m.,A202112
+A202112_37,powpuma,8:30 a.m. to 8:44 a.m.,A202112
+A202112_39,powpuma,8:45 a.m. to 8:59 a.m.,A202112
+A202112_41,powpuma,9:00 a.m. to 9:14 a.m.,A202112
+A202112_43,powpuma,9:15 a.m. to 9:29 a.m.,A202112
+A202112_45,powpuma,9:30 a.m. to 9:44 a.m.,A202112
+A202112_47,powpuma,9:45 a.m. to 9:59 a.m.,A202112
+A202112_49,powpuma,10:00 a.m. to 10:14 a.m.,A202112
+A202112_51,powpuma,10:15 a.m. to 10:29 a.m.,A202112
+A202112_53,powpuma,10:30 a.m. to 10:44 a.m.,A202112
+A202112_55,powpuma,10:45 a.m. to 10:59 a.m.,A202112
+A202112_57,powpuma,11:00 a.m. to 11:59 a.m.,A202112
+A202112_59,powpuma,12:00 p.m. to 12:59 p.m.,A202112
+A202112_61,powpuma,1:00 p.m. to 1:59 p.m.,A202112
+A202112_63,powpuma,2:00 p.m. to 2:59 p.m.,A202112
+A202112_65,powpuma,3:00 p.m. to 3:59 p.m.,A202112
+A202112_67,powpuma,4:00 p.m. to 4:59 p.m.,A202112
+A202112_69,powpuma,5:00 p.m. to 5:59 p.m.,A202112
+A202112_71,powpuma,6:00 p.m. to 6:59 p.m.,A202112
+A202112_73,powpuma,7:00 p.m. to 7:59 p.m.,A202112
+A202112_75,powpuma,8:00 p.m. to 8:59 p.m.,A202112
+A202112_77,powpuma,9:00 p.m. to 9:59 p.m.,A202112
+A202112_79,powpuma,10:00 p.m. to 10:59 p.m.,A202112
+A202112_81,powpuma,11:00 p.m. to 11:59 p.m.,A202112
+A202112_83,powpuma,12:00 a.m. to 4:59 a.m.,A202112
+A202112_85,powpuma,Worked at home,A202112
+A202113_5,powpuma,All workers,A202113
+A202113_7,powpuma,Did not work at home,A202113
+A202113_9,powpuma,Less than 5 minutes,A202113
+A202113_11,powpuma,5 to 14 minutes,A202113
+A202113_13,powpuma,15 to 19 minutes,A202113
+A202113_15,powpuma,20 to 29 minutes,A202113
+A202113_17,powpuma,30 to 44 minutes,A202113
+A202113_19,powpuma,45 to 59 minutes,A202113
+A202113_21,powpuma,60 to 74 minutes,A202113
+A202113_23,powpuma,75 to 89 minutes,A202113
+A202113_25,powpuma,90 minutes or more,A202113
+A202113_27,powpuma,Worked at home,A202113
+A203100_5,powpuma,Total workers in households,A203100
+A203103_5,powpuma,Aggregate vehicles per worker in household,A203103
+A203104_5,powpuma,Vehicles per household (average),A203104
+A205100_5,powpuma,"Total, all industries",A205100
+A205100_7,powpuma,"Agriculture, forestry, fishing and hunting, and mining",A205100
+A205100_9,powpuma,Construction,A205100
+A205100_11,powpuma,Manufacturing,A205100
+A205100_13,powpuma,Wholesale trade,A205100
+A205100_15,powpuma,Retail trade,A205100
+A205100_17,powpuma,"Transportation and warehousing, and utilities",A205100
+A205100_19,powpuma,Information,A205100
+A205100_21,powpuma,"Finance, insurance, real estate and rental and leasing",A205100
+A205100_23,powpuma,"Professional, scientific, management, administrative,  and waste management services",A205100
+A205100_25,powpuma,"Educational, health and social services",A205100
+A205100_27,powpuma,"Arts, entertainment, recreation, accommodation and food services",A205100
+A205100_29,powpuma,Other services (except public administration),A205100
+A205100_31,powpuma,Public administration,A205100
+A205100_33,powpuma,Armed forces,A205100
+B203101_5,powpuma,"Total, household income",B203101
+B203101_7,powpuma,"Less than $5,000",B203101
+B203101_9,powpuma,"$5,000-$9,999",B203101
+B203101_11,powpuma,"$10,000-$12,499",B203101
+B203101_13,powpuma,"$12,500-$14,999",B203101
+B203101_15,powpuma,"$15,000-$17,499",B203101
+B203101_17,powpuma,"$17,500-$19,999",B203101
+B203101_19,powpuma,"$20,000-$22,499",B203101
+B203101_21,powpuma,"$22,500-$24,999",B203101
+B203101_23,powpuma,"$25,000-$27,499",B203101
+B203101_25,powpuma,"$27,500-$29,999",B203101
+B203101_27,powpuma,"$30,000-$32,499",B203101
+B203101_29,powpuma,"$32,500-$34,999",B203101
+B203101_31,powpuma,"$35,000-$37,499",B203101
+B203101_33,powpuma,"$37,500-$39,999",B203101
+B203101_35,powpuma,"$40,000-$42,499",B203101
+B203101_37,powpuma,"$42,500-$44,999",B203101
+B203101_39,powpuma,"$45,000-$47,499",B203101
+B203101_41,powpuma,"$47,500-$49,999",B203101
+B203101_43,powpuma,"$50,000-$54,999",B203101
+B203101_45,powpuma,"$55,000-$59,999",B203101
+B203101_47,powpuma,"$60,000-$74,999",B203101
+B203101_49,powpuma,"$75,000-$99,999",B203101
+B203101_51,powpuma,"$100,000-$124,999",B203101
+B203101_53,powpuma,"$125,000-$149,999",B203101
+B203101_55,powpuma,"$150,000 or more",B203101
+B203102_5,powpuma,"Total, vehicles available",B203102
+B203102_7,powpuma,0 vehicles,B203102
+B203102_9,powpuma,1 vehicle,B203102
+B203102_11,powpuma,2 vehicles,B203102
+B203102_13,powpuma,3 vehicles,B203102
+B203102_15,powpuma,4-or-more vehicles,B203102
+B207100_5,powpuma,"Workers per car, truck, or van",B207100
 A202100_5,tad,Total population (All persons),A202100
 A202101_5,tad,"Total, all ages 16 years and over",A202101
 A202101_7,tad,16 and 17 years,A202101
@@ -442,8 +442,8 @@ A202101_13,tad,25 to 34 years,A202101
 A202101_15,tad,35 to 44 years,A202101
 A202101_17,tad,45 to 59 years,A202101
 A202101_19,tad,60 to 64 years,A202101
-A202101_20,tad,65 to 74 years,A202101
-A202101_21,tad,75 years and over,A202101
+A202101_21,tad,65 to 74 years,A202101
+A202101_23,tad,75 years and over,A202101
 A202103_5,tad,"Total, workers' earnings in the past 12 months",A202103
 A202103_7,tad,"$1 to $9,999 or loss",A202103
 A202103_9,tad,"$10,000 to $14,999",A202103
@@ -608,8 +608,8 @@ A202101_13,tract,25 to 34 years,A202101
 A202101_15,tract,35 to 44 years,A202101
 A202101_17,tract,45 to 59 years,A202101
 A202101_19,tract,60 to 64 years,A202101
-A202101_20,tract,65 to 74 years,A202101
-A202101_21,tract,75 years and over,A202101
+A202101_21,tract,65 to 74 years,A202101
+A202101_23,tract,75 years and over,A202101
 A202103_5,tract,"Total, workers' earnings in the past 12 months",A202103
 A202103_7,tract,"$1 to $9,999 or loss",A202103
 A202103_9,tract,"$10,000 to $14,999",A202103
@@ -774,8 +774,8 @@ A202101_13,taz,25 to 34 years,A202101
 A202101_15,taz,35 to 44 years,A202101
 A202101_17,taz,45 to 59 years,A202101
 A202101_19,taz,60 to 64 years,A202101
-A202101_20,taz,65 to 74 years,A202101
-A202101_21,taz,75 years and over,A202101
+A202101_21,taz,65 to 74 years,A202101
+A202101_23,taz,75 years and over,A202101
 A202103_5,taz,"Total, workers' earnings in the past 12 months",A202103
 A202103_7,taz,"$1 to $9,999 or loss",A202103
 A202103_9,taz,"$10,000 to $14,999",A202103
