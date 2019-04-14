@@ -210,3 +210,54 @@ full <- full %>%
   summarize(n = n()) %>%
   mutate(pct = round(n / sum(n) * 100, 3))
 write_csv(full, here("output_data", "final_od_tab.csv"))
+
+# Stack up 5 fields with identical universes
+rac <- c("A102101", "A102102", "A102105", "A102106", "A102110")
+wac <- c("A202100", "A202101", "A202104", "A202105", "A202113")
+od <- c("A302100", "B302101", "B302102", "A302103", "B302106")
+variabletype <- c("tot_workers", "age", "industry", "transpo", "trav_time")
+
+rac_fields <- read_csv(here("inputfile_rac_xwalk.csv")) %>%
+  filter(tableid %in% rac & geo == "cty")
+rac_full <- data.frame()
+for (t in 1:nrow(rac_fields)){
+  temp <- read_csv(here("dl_data", paste(rac_fields$file[t], "cty.csv", sep = "_"))) %>%
+    mutate(tableid = rac_fields$tableid[t], tabletype = "rac") %>%
+    mutate_at(vars(GEOID), as.character)
+  rac_full <- rbind(rac_full, temp)
+}
+
+wac_fields <- read_csv(here("inputfile_wac_xwalk.csv")) %>%
+  filter(tableid %in% wac & geo == "cty")
+wac_full <- data.frame()
+for (t in 1:nrow(wac_fields)){
+  temp <- read_csv(here("dl_data", paste(wac_fields$file[t], "cty.csv", sep = "_"))) %>%
+    mutate(tableid = wac_fields$tableid[t], tabletype = "wac") %>%
+    mutate_at(vars(GEOID), as.character)
+  wac_full <- rbind(wac_full, temp)
+}
+
+od_fields <- read_csv(here("inputfile_od_xwalk.csv")) %>%
+  filter(tableid %in% od & geo == "cty")
+od_full <- data.frame()
+for (t in 1:nrow(od_fields)){
+  temp <- read_csv(here("dl_data", paste(od_fields$file[t], "cty.csv", sep = "_"))) %>%
+    mutate(tableid = od_fields$tableid[t], tabletype = "od") %>%
+    mutate_at(vars(GEOID), as.character)
+  od_full <- rbind(od_full, temp)
+}
+
+# Compare total workers across table types
+for (i in 1:length(variabletype)){
+  temp <- bind_rows(rac_full %>% filter(tableid == rac[i]),
+                    wac_full %>% filter(tableid == wac[i])) %>%
+    bind_rows(., od_full %>% filter(tableid == od[i])) %>%
+    group_by(tabletype) %>%
+    summarize(min_cv = min(cv),
+              median_cv = median(cv),
+              mean_cv = mean(cv),
+              iqr_cv = IQR(cv),
+              max_cv = max(cv)) %>%
+    mutate_if(is.numeric, funs(round(., 2)))
+  write_csv(temp, here("output_data", paste(variabletype[i], "bytype.csv", sep = "_")))
+}

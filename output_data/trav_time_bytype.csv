@@ -1,0 +1,4 @@
+tabletype,min_cv,median_cv,mean_cv,iqr_cv,max_cv
+od,0.46,20.84,37.62,46.79,638.3
+rac,0.3,2.38,3.02,2.7,10.05
+wac,0.4,2.33,3.38,2.83,16.75
