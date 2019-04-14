@@ -218,7 +218,8 @@ od <- c("A302100", "B302101", "B302102", "A302103", "B302106")
 variabletype <- c("tot_workers", "age", "industry", "transpo", "trav_time")
 
 rac_fields <- read_csv(here("inputfile_rac_xwalk.csv")) %>%
-  filter(tableid %in% rac & geo == "cty")
+  filter(tableid %in% rac & geo == "cty") %>%
+  filter(!(file %in% c("A102102_5", "A102105_5", "A102110_5", "A102106_5"))) # Drop duplicate universes
 rac_full <- data.frame()
 for (t in 1:nrow(rac_fields)){
   temp <- read_csv(here("dl_data", paste(rac_fields$file[t], "cty.csv", sep = "_"))) %>%
@@ -228,7 +229,8 @@ for (t in 1:nrow(rac_fields)){
 }
 
 wac_fields <- read_csv(here("inputfile_wac_xwalk.csv")) %>%
-  filter(tableid %in% wac & geo == "cty")
+  filter(tableid %in% wac & geo == "cty") %>%
+  filter(!(file %in% c("A202101_5", "A202104_5", "A202105_5", "A202113_5"))) # Drop duplicate universes
 wac_full <- data.frame()
 for (t in 1:nrow(wac_fields)){
   temp <- read_csv(here("dl_data", paste(wac_fields$file[t], "cty.csv", sep = "_"))) %>%
@@ -238,7 +240,8 @@ for (t in 1:nrow(wac_fields)){
 }
 
 od_fields <- read_csv(here("inputfile_od_xwalk.csv")) %>%
-  filter(tableid %in% od & geo == "cty")
+  filter(tableid %in% od & geo == "cty") %>%
+  filter(!(file %in% c("A302103_3", "B302101_3", "B302102_3", "B302106_3"))) # Drop duplicate universes
 od_full <- data.frame()
 for (t in 1:nrow(od_fields)){
   temp <- read_csv(here("dl_data", paste(od_fields$file[t], "cty.csv", sep = "_"))) %>%
@@ -261,3 +264,15 @@ for (i in 1:length(variabletype)){
     mutate_if(is.numeric, funs(round(., 2)))
   write_csv(temp, here("output_data", paste(variabletype[i], "bytype.csv", sep = "_")))
 }
+
+# And overall
+bind_rows(rac_full, wac_full) %>%
+  bind_rows(., od_full) %>%
+  group_by(tabletype) %>%
+  summarize(min_cv = min(cv),
+            median_cv = median(cv),
+            mean_cv = mean(cv),
+            iqr_cv = IQR(cv),
+            max_cv = max(cv)) %>%
+  mutate_if(is.numeric, funs(round(., 2))) %>%
+  write_csv(., here("output_data", "overall_bytype.csv"))
