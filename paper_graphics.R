@@ -141,7 +141,7 @@ ggplot(data = data.frame(x = c(-100, 200)), aes(x)) +
                 args = list(mean = bike_density[8,]$est, sd = bike_density[8,]$moe / 1.645)) +
   labs(x = "Potential value of estimate",
        y = "Probability",
-       title = "Potential number of bikers to Census Tract 4.02") +
+       title = "Potential number of cyclists to Census Tract 4.02") +
   scale_y_continuous(breaks = NULL) +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank())

@@ -2,6 +2,7 @@ library(here)
 library(tidyverse)
 library(summarytools)
 library(sf)
+library(data.table)
 
 # Dissolve boundary
 region <- st_read(here("dl_geo", "a_cty.shp")) %>%
@@ -39,20 +40,36 @@ sum_tab <- sum_tab[,2:ncol(sum_tab)] %>%
   write_csv(., here("output_data", "by_geo.csv"))
 
 # Reliability by variable detail / crosstabs
-d_cty <- read_csv(here("dl_data", "A111102_7_cty.csv")) %>%
-  mutate_at(vars(GEOID), as.character) %>%
+# f2 f3 are estimate and MOE for zero car hhs
+d_cty <- st_read(here("raw", "residence", "cty", "A112310.shp")) %>%
+  rename(sum_est = F2, sum_moe = F3) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_puma <- read_csv(here("dl_data", "A111102_7_puma.csv")) %>%
-  mutate_at(vars(GEOID), as.character) %>%
+d_puma <- st_read(here("raw", "residence", "puma", "A112310.shp")) %>%
+  rename(sum_est = F2, sum_moe = F3) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_tad <- read_csv(here("dl_data", "A111102_7_tad.csv")) %>%
-  mutate_at(vars(GEOID), as.character) %>%
+d_tad <- st_read(here("raw", "residence", "tad", "A112310.shp")) %>%
+  rename(sum_est = F2, sum_moe = F3) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_trct <- read_csv(here("dl_data", "A111102_7_tract.csv")) %>%
-  mutate_at(vars(GEOID), as.character) %>%
+d_trct <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
+  rename(sum_est = F2, sum_moe = F3) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_taz <- read_csv(here("dl_data", "A111102_7_taz.csv")) %>%
-  mutate_at(vars(GEOID), as.character) %>%
+d_taz <- st_read(here("raw", "residence", "taz", "A112310.shp")) %>%
+  rename(sum_est = F2, sum_moe = F3) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
 full <- list(d_cty, d_puma, d_tad, d_trct, d_taz)
 full_name <- c("County", "PUMA", "TAD", "Tract", "TAZ")
@@ -68,33 +85,33 @@ sum_tab <- sum_tab[,2:ncol(sum_tab)] %>%
   as.data.frame(.) %>%
   write_csv(., here("output_data", "by_var_1.csv"))
 
-# f32 est f33 moe
-d_cty <- st_read(here("raw", "cty", "A112310.shp")) %>%
-  rename(sum_est = F32, sum_moe = F33) %>%
+# f22 est f23 moe
+d_cty <- st_read(here("raw", "residence", "cty", "A112310.shp")) %>%
+  rename(sum_est = F22, sum_moe = F23) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_puma <- st_read(here("raw", "puma", "A112310.shp")) %>%
-  rename(sum_est = F32, sum_moe = F33) %>%
+d_puma <- st_read(here("raw", "residence", "puma", "A112310.shp")) %>%
+  rename(sum_est = F22, sum_moe = F23) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_tad <- st_read(here("raw", "tad", "A112310.shp")) %>%
-  rename(sum_est = F32, sum_moe = F33) %>%
+d_tad <- st_read(here("raw", "residence", "tad", "A112310.shp")) %>%
+  rename(sum_est = F22, sum_moe = F23) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_trct <- st_read(here("raw", "tract", "A112310.shp")) %>%
-  rename(sum_est = F32, sum_moe = F33) %>%
+d_trct <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
+  rename(sum_est = F22, sum_moe = F23) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100)) %>%
   pull(cv)
-d_taz <- st_read(here("raw", "taz", "A112310.shp")) %>%
-  rename(sum_est = F32, sum_moe = F33) %>%
+d_taz <- st_read(here("raw", "residence", "taz", "A112310.shp")) %>%
+  rename(sum_est = F22, sum_moe = F23) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100)) %>%
@@ -262,11 +279,13 @@ for (i in 1:length(variabletype)){
               iqr_cv = IQR(cv),
               max_cv = max(cv)) %>%
     mutate_if(is.numeric, funs(round(., 2)))
+  temp <- dcast(melt(temp, id.vars = "tabletype"), variable ~ tabletype) %>%
+    select(variable, rac, wac, od)
   write_csv(temp, here("output_data", paste(variabletype[i], "bytype.csv", sep = "_")))
 }
 
 # And overall
-bind_rows(rac_full, wac_full) %>%
+temp <- bind_rows(rac_full, wac_full) %>%
   bind_rows(., od_full) %>%
   group_by(tabletype) %>%
   summarize(min_cv = min(cv),
@@ -274,5 +293,7 @@ bind_rows(rac_full, wac_full) %>%
             mean_cv = mean(cv),
             iqr_cv = IQR(cv),
             max_cv = max(cv)) %>%
-  mutate_if(is.numeric, funs(round(., 2))) %>%
-  write_csv(., here("output_data", "overall_bytype.csv"))
+  mutate_if(is.numeric, funs(round(., 2)))
+temp <- dcast(melt(temp, id.vars = "tabletype"), variable ~ tabletype) %>%
+  select(variable, rac, wac, od)
+write_csv(temp, here("output_data", "overall_bytype.csv"))
