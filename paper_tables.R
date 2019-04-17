@@ -130,6 +130,55 @@ sum_tab <- sum_tab[,2:ncol(sum_tab)] %>%
   as.data.frame(.) %>%
   write_csv(., here("output_data", "by_var_2.csv"))
 
+# Addendum to zero-car: classification x uncertainty
+# f2 f3 are estimate and MOE for zero car hhs
+# We'll use a 5-class standard deviation
+zc <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
+  filter(str_sub(geoid, 1, 5) == "42101") %>%
+  rename(sum_est = F2, sum_moe = F3) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100))
+zc_breaks <- c(-1, 15.317, 318.147, 620.978, 923.808, max(zc$sum_est))
+zc_labels <- c("(-Inf, -1.5 SD]",
+               "(-1.5 SD, -0.5 SD]",
+               "(-0.5 SD, 0.5 SD]",
+               "(0.5 SD, 1.5 SD]",
+               "(1.5 SD, Inf]")
+zc <- zc %>%
+  mutate(classification = cut(sum_est, breaks = zc_breaks, labels = zc_labels),
+         cv_cat = case_when(cv <= 15 ~ "0-15",
+                            cv > 15 & cv <= 30 ~ "15.1-30",
+                            cv > 30 & cv <= 60 ~ "30.1-60",
+                            cv > 60 ~ "60.1+")) %>%
+  st_set_geometry(NULL) %>%
+  select(classification, cv_cat)
+write.table(table(zc$cv_cat, zc$classification),
+            here("output_data", "zc_tab.csv"), sep = ",")
+write.table(round(prop.table(table(zc$cv_cat, zc$classification)) * 100, 2),
+            here("output_data", "zc_tab_pct.csv"), sep = ",")
+
+# f22 est f23 moe
+zc_1 <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
+  filter(str_sub(geoid, 1, 5) == "42101") %>%
+  rename(sum_est = F22, sum_moe = F23) %>%
+  mutate(se = sum_moe / 1.645,
+         cv = case_when(sum_est == 0 ~ 100,
+                        sum_est != 0 ~ se / sum_est * 100))
+zc_1_breaks <- c(-1, 1, 97.891, 231.411, 364.932, max(zc_1$sum_est))
+zc_1 <- zc_1 %>%
+  mutate(classification = cut(sum_est, breaks = zc_1_breaks, labels = zc_labels),
+         cv_cat = case_when(cv <= 15 ~ "0-15",
+                            cv > 15 & cv <= 30 ~ "15.1-30",
+                            cv > 30 & cv <= 60 ~ "30.1-60",
+                            cv > 60 ~ "60.1+")) %>%
+  st_set_geometry(NULL) %>%
+  select(classification, cv_cat)
+write.table(table(zc_1$cv_cat, zc_1$classification),
+            here("output_data", "zc_xtab.csv"), sep = ",")
+write.table(round(prop.table(table(zc_1$cv_cat, zc_1$classification)) * 100, 2),
+            here("output_data", "zc_xtab_pct.csv"), sep = ",")
+
 # Summary tables of data reliability by geography and table type
 inputfile_xwalk <- read_csv(here("inputfile_rac_xwalk.csv")) %>%
   mutate(tableno = as.numeric(str_sub(file, 9, -1)))
