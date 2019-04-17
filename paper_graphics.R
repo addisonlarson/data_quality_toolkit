@@ -254,3 +254,35 @@ zc_1_cv <- ggplot() +
 png(here("figs", "zc_cv.png"), width = 7, height = 3, units = "in", res = 400)
 grid_arrange_shared_legend(zc_cv, zc_1_cv, nrow = 1, ncol = 2)
 dev.off()
+
+# Local context example 1: IPD scoring
+field_fronts <- c("D", "EM", "F", "FB", "LEP", "LI", "OA", "RM", "Y")
+field_finals <- c(paste(field_fronts, "PctEst", sep = "_"), paste(field_fronts, "PctMOE", sep = "_"))
+ipd <- read_csv(here("dl_data", "ipd.csv")) %>%
+  filter(D_PctEst != -99999) %>% # Drop NA observations
+  select(!!!field_finals, IPD_Score) %>%
+  mutate(D_CV = (D_PctMOE / 1.645) / D_PctEst * 100,
+         EM_CV = (EM_PctMOE / 1.645) / EM_PctEst * 100,
+         F_CV = (F_PctMOE / 1.645) / F_PctEst * 100,
+         FB_CV = (FB_PctMOE / 1.645) / FB_PctEst * 100,
+         LEP_CV = (LEP_PctMOE / 1.645) / LEP_PctEst * 100,
+         LI_CV = (LI_PctMOE / 1.645) / LI_PctEst * 100,
+         OA_CV = (OA_PctMOE / 1.645) / OA_PctEst * 100,
+         RM_CV = (RM_PctMOE / 1.645) / RM_PctEst * 100,
+         Y_CV = (Y_PctMOE / 1.645) / Y_PctEst * 100)
+ipd[mapply(is.infinite, ipd)] <- 100 # Replace 0 estimate CVs with CVs of 100%
+
+# Compute mean CV of observation
+ipd <- ipd %>%
+  mutate(Mean_CV = (D_CV + EM_CV + F_CV + FB_CV + LEP_CV + LI_CV + OA_CV + RM_CV + Y_CV) / 9)
+
+cor(ipd$Mean_CV, ipd$IPD_Score) # -0.455
+mod <- glm(IPD_Score ~ Mean_CV, family = "poisson", data = ipd)
+summary(mod)
+ggplot(ipd, aes(x = Mean_CV, y = IPD_Score)) +
+  theme(text = element_text(family = "CMU Serif")) +
+  theme(panel.background = element_blank()) +
+  geom_point(color = "#45055B") +
+  labs(title = "Relationship between IPD score\nand data reliability",
+       x = "Mean CV of IPD population groups", y = "IPD score")
+ggsave(here("figs", "ipd.png"), width = 4.5, height = 4.5, units = "in", dpi = 400)
