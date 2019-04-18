@@ -1,35 +1,13 @@
 library(here)
 library(tidyverse)
 library(sf)
-library(gridExtra)
 library(grid)
+library(gridExtra)
 library(extrafont)
 library(tigris)
 library(viridis)
 options(tigris_class = "sf")
 loadfonts(device = "win")
-
-grid_arrange_shared_legend <- function(..., nrow = 1, ncol = length(list(...)), position = c("bottom", "right")) {
-  plots <- list(...)
-  position <- match.arg(position)
-  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
-  legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
-  lheight <- sum(legend$height)
-  lwidth <- sum(legend$width)
-  gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
-  gl <- c(gl, nrow = nrow, ncol = ncol)
-  combined <- switch(position,
-                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
-                                            legend,
-                                            ncol = 1,
-                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
-                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
-                                           legend,
-                                           ncol = 2,
-                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
-  grid.newpage()
-  grid.draw(combined)
-}
 
 a <- st_read(here("dl_geo", "a_cty.shp")) %>%
   filter(str_sub(GEOID, 1, 5) == 42101)
@@ -171,29 +149,7 @@ ggplot(data = data.frame(x = c(-100, 200)), aes(x)) +
 dev.off()
 
 # Plot the zero car hhs and zero car / 1 person hhs
-# f2 f3 are estimate and MOE for zero car hhs
-# We'll use a 5-class standard deviation
-zc <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
-  filter(str_sub(geoid, 1, 5) == "42101") %>%
-  rename(sum_est = F2, sum_moe = F3) %>%
-  mutate(se = sum_moe / 1.645,
-         cv = case_when(sum_est == 0 ~ 100,
-                        sum_est != 0 ~ se / sum_est * 100)) %>%
-  st_transform(., 26918)
-zc_breaks <- c(-1, 15.317, 318.147, 620.978, 923.808, max(zc$sum_est))
-zc_labels <- c("(-Inf, -1.5 SD]   ",
-               "(-1.5 SD, -0.5 SD]   ",
-               "(-0.5 SD, 0.5 SD]   ",
-               "(0.5 SD, 1.5 SD]   ",
-               "(1.5 SD, Inf]   ")
-zc <- zc %>%
-  mutate(classification = cut(sum_est, breaks = zc_breaks, labels = zc_labels),
-         cv_cat = case_when(cv <= 15 ~ "0-15     ",
-                            cv > 15 & cv <= 30 ~ "15.1-30     ",
-                            cv > 30 & cv <= 60 ~ "30.1-60     ",
-                            cv > 60 ~ "60.1+     ")) %>%
-  st_transform(., 26918)
-
+# We'll use a 5-class standard deviation MODDED s.t. 0 estimates are bottom class
 # f22 est f23 moe
 zc_1 <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
   filter(str_sub(geoid, 1, 5) == "42101") %>%
@@ -203,6 +159,11 @@ zc_1 <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
                         sum_est != 0 ~ se / sum_est * 100)) %>%
   st_transform(., 26918)
 zc_1_breaks <- c(-1, 1, 97.891, 231.411, 364.932, max(zc_1$sum_est))
+zc_labels <- c("(-Inf, -1.5 SD]   ",
+               "(-1.5 SD, -0.5 SD]   ",
+               "(-0.5 SD, 0.5 SD]   ",
+               "(0.5 SD, 1.5 SD]   ",
+               "(1.5 SD, Inf)   ")
 zc_1 <- zc_1 %>%
   mutate(classification = cut(sum_est, breaks = zc_1_breaks, labels = zc_labels),
          cv_cat = case_when(cv <= 15 ~ "0-15     ",
@@ -211,48 +172,24 @@ zc_1 <- zc_1 %>%
                             cv > 60 ~ "60.1+     ")) %>%
   st_transform(., 26918)
 
-zc_est <- ggplot() +
-  theme(text = element_text(family = "CMU Serif")) +
-  theme(panel.background = element_blank()) +
-  geom_sf(data = zc, aes(fill = classification), color = NA) +
-  scale_fill_viridis_d() +
-  theme(legend.title = element_blank()) +
-  labs(title = "Zero-car households") +
-  geom_sf(data = a, fill = NA, color = "gray") +
-  coord_sf(datum = NA)
 zc_1_est <- ggplot() +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank()) +
   geom_sf(data = zc_1, aes(fill = classification), color = NA) +
-  scale_fill_viridis_d() +
-  theme(legend.title = element_blank()) +
-  labs(title = "One-person zero-car households") +
+  scale_fill_viridis_d("Estimate") +
   geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA)
-png(here("figs", "zc_est.png"), width = 7, height = 3, units = "in", res = 400)
-grid_arrange_shared_legend(zc_est, zc_1_est, nrow = 1, ncol = 2)
-dev.off()
 
-zc_cv <- ggplot() +
-  theme(text = element_text(family = "CMU Serif")) +
-  theme(panel.background = element_blank()) +
-  geom_sf(data = zc, aes(fill = cv_cat), color = NA) +
-  scale_fill_viridis_d() +
-  theme(legend.title = element_blank()) +
-  labs(title = "CV") +
-  geom_sf(data = a, fill = NA, color = "gray") +
-  coord_sf(datum = NA)
 zc_1_cv <- ggplot() +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank()) +
   geom_sf(data = zc_1, aes(fill = cv_cat), color = NA) +
-  scale_fill_viridis_d() +
-  theme(legend.title = element_blank()) +
-  labs(title = "CV") +
+  scale_fill_viridis_d("CV") +
   geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA)
-png(here("figs", "zc_cv.png"), width = 7, height = 3, units = "in", res = 400)
-grid_arrange_shared_legend(zc_cv, zc_1_cv, nrow = 1, ncol = 2)
+
+png(here("figs", "zc_1_est_cv.png"), width = 7, height = 3, units = "in", res = 400)
+gridExtra::grid.arrange(zc_1_est, zc_1_cv, ncol = 2, widths = c(1.15, 1))
 dev.off()
 
 # Local context example 1: IPD scoring
