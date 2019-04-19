@@ -14,12 +14,17 @@ a <- st_read(here("dl_geo", "a_cty.shp")) %>%
 a_mask <- st_union(a)
 b <- st_read(here("dl_geo", "a_puma.shp")) %>%
   st_intersection(., a_mask)
+bb <- st_read(here("dl_geo", "a_powpuma.shp")) %>%
+  st_intersection(., a_mask)
 c <- st_read(here("dl_geo", "a_tad.shp")) %>%
   st_intersection(., a_mask)
 d <- st_read(here("dl_geo", "a_trct.shp")) %>%
   filter(str_sub(GEOID, 1, 5) == 42101) %>%
   mutate(destination = ifelse(GEOID == "42101000402", "Yes", "No"))
 e <- st_read(here("dl_geo", "a_taz.shp")) %>%
+  st_intersection(., a_mask)
+h2o <- st_read(here("dl_geo", "h2o.shp")) %>%
+  st_transform(., st_crs(a_mask)) %>%
   st_intersection(., a_mask)
 
 # Plot Census Tract 4.02
@@ -29,6 +34,7 @@ ggplot(d) +
   theme(legend.position = "none") +
   scale_fill_manual(values = c("gainsboro", "#45055B")) +
   geom_sf(aes(fill = destination), color = NA) +
+  geom_sf(data = h2o, fill = "#669999", color = NA) +
   geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA) +
   ggtitle("Location of Census Tract 4.02")
@@ -47,6 +53,12 @@ b_geo <- ggplot(b) +
   geom_sf(color = "gray", fill = "gainsboro") +
   coord_sf(datum = NA) +
   ggtitle("PUMA")
+bb_geo <- ggplot(bb) +
+  theme(text = element_text(family = "CMU Serif")) +
+  theme(panel.background = element_blank()) +
+  geom_sf(color = "gray", fill = "gainsboro") +
+  coord_sf(datum = NA) +
+  ggtitle("POWPUMA")
 c_geo <- ggplot(c) +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank()) +
@@ -67,7 +79,7 @@ e_geo <- ggplot(e) +
   ggtitle("TAZ")
 
 png(here("figs", "geo_examples.png"), width = 7, height = 4, units = "in", res = 400)
-gridExtra::grid.arrange(a_geo, b_geo, c_geo, d_geo, e_geo, nrow = 2, ncol = 3)
+gridExtra::grid.arrange(a_geo, bb_geo, b_geo, c_geo, d_geo, e_geo, nrow = 2, ncol = 3)
 dev.off()
 
 # TAZ vs block group just for Philadelphia
@@ -104,8 +116,9 @@ ggplot() +
   labs(title = "Estimated bicycle commuters by census tract",
        subtitle = "Black tract is destination") +
   geom_sf(data = destination, fill = "black", color = NA) +
+  geom_sf(data = h2o, fill = "#669999", color = NA) +
   geom_sf(data = a, fill = NA, color = "gray") +
-  coord_sf(datum = NA) +
+  coord_sf(datum = NA)
 ggsave(here("figs", "bikers.png"), width = 4.5, height = 4.5, units = "in", dpi = 400)
 
 # Density plots
@@ -177,6 +190,7 @@ zc_1_est <- ggplot() +
   theme(panel.background = element_blank()) +
   geom_sf(data = zc_1, aes(fill = classification), color = NA) +
   scale_fill_viridis_d("Estimate") +
+  geom_sf(data = h2o, fill = "#669999", color = NA) +
   geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA)
 
@@ -185,6 +199,7 @@ zc_1_cv <- ggplot() +
   theme(panel.background = element_blank()) +
   geom_sf(data = zc_1, aes(fill = cv_cat), color = NA) +
   scale_fill_viridis_d("CV") +
+  geom_sf(data = h2o, fill = "#669999", color = NA) +
   geom_sf(data = a, fill = NA, color = "gray") +
   coord_sf(datum = NA)
 
@@ -219,6 +234,7 @@ summary(mod)
 ggplot(ipd, aes(x = Mean_CV, y = IPD_Score)) +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank()) +
+  geom_vline(xintercept = 30, color = "gray", lwd = 1) +
   geom_point(color = "#45055B") +
   labs(title = "Relationship between IPD score\nand data reliability",
        x = "Mean CV of IPD population groups", y = "IPD score")
