@@ -153,6 +153,7 @@ ggplot(data = data.frame(x = c(-100, 200)), aes(x)) +
   stat_function(fun = dnorm, n = 101, color = "#45055B", fill = "gainsboro",
                 alpha = 0.5, geom = "area",
                 args = list(mean = bike_density[8,]$est, sd = bike_density[8,]$moe / 1.645)) +
+  geom_hline(yintercept = 0, color = "gray") +
   labs(x = "Potential value of estimate",
        y = "Probability",
        title = "Potential number of cyclists to Census Tract 4.02") +
