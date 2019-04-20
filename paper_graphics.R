@@ -238,5 +238,5 @@ ggplot(ipd, aes(x = Mean_CV, y = IPD_Score)) +
   geom_vline(xintercept = 30, color = "gray", lwd = 1) +
   geom_point(color = "#45055B") +
   labs(title = "Relationship between IPD score\nand data reliability",
-       x = "Mean CV of IPD population groups", y = "IPD score")
+       x = "Mean CV of IPD population groups (%)", y = "IPD score")
 ggsave(here("figs", "ipd.png"), width = 4.5, height = 4.5, units = "in", dpi = 400)
