@@ -2,7 +2,7 @@ library(knitr)
 library(rmarkdown)
 library(here)
 library(tidyverse)
-inputfile_xwalk <- read_csv(here("inputfile_od_xwalk.csv")) %>%
+inputfile_xwalk <- read_csv(here("inputfile_rac_xwalk.csv")) %>%
   mutate(order = case_when(geo == "cty"   ~ "a",
                            geo == "puma"  ~ "b",
                            geo == "tad"   ~ "c",

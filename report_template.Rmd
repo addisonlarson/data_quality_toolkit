@@ -1,5 +1,8 @@
 ---
-output: pdf_document
+output:
+  pdf_document
+header-includes:
+- \usepackage{booktabs}
 params:
   a: !r 1
   b: !r 1
@@ -16,6 +19,7 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 knitr::opts_chunk$set(warning = FALSE)
 library(knitr)
+library(xtable)
 library(here)
 library(tidyverse)
 library(sf)
@@ -47,7 +51,7 @@ if(geo_chars == 11){
 } else if (geo_chars == 7){
   geo <- "PUMA"
   threshold <- 30
-  study_area <- a_powpuma
+  study_area <- a_puma
 } else if (geo_chars == 5){
   geo <- "County"
   threshold <- 30
@@ -63,7 +67,7 @@ if(geo_chars == 11){
 }
 ```
 
-```{r test}
+```{r joins}
 a <- left_join(study_area, a)
 if(geo == "County"){
   a <- a %>% mutate(sp_outlier = "No")
@@ -98,39 +102,87 @@ adj <- a %>% filter(sp_outlier == 0) %>%
   summarize(mean(cv), median(cv), max(cv))
 ```
 
-```{r var_title, results = "asis"}
-cat(paste0("## ", params$c, "---", params$b, "---", geo))
+```{r main_title, results = "asis"}
+cat(paste0("# ", params$c))
 ```
 
-```{r main_summary, results = "asis"}
-CV <- a$cv
-descr(CV, style = "rmarkdown", stats = c("min", "med", "mean", "max"),
-      transpose = TRUE, display.labels = FALSE)
+```{r second_title, results = "asis"}
+cat(paste0("## ", params$b))
 ```
 
-```{r outlier_tab}
+```{r third_title, results = "asis"}
+cat(paste0("## ", geo))
+```
+
+### Descriptive statistics
+```{r main_tab, echo = FALSE, results = "asis"}
+val_sum <- a %>%
+  st_set_geometry(NULL) %>%
+  summarize(Minimum = min(sum_est),
+            Median = median(sum_est),
+            Mean = mean(sum_est),
+            Maximum = max(sum_est)) %>%
+  mutate_all(round, 0)
+val_sum <- as.data.frame(val_sum)
+cv_sum <- a %>%
+  st_set_geometry(NULL) %>%
+  summarize(Minimum = min(cv),
+            Median = median(cv),
+            Mean = mean(cv),
+            Maximum = max(cv)) %>%
+  mutate_all(round, 2)
+cv_sum <- as.data.frame(cv_sum)
+colnames(cv_tab) <- c("CV", "Count")
+t1 <- kable(val_sum, format = "latex", booktabs = TRUE)
+t2 <- kable(cv_sum, format = "latex", booktabs = TRUE)
+cat(c("\\begin{table}[!htb]
+    \\begin{minipage}{.5\\linewidth}
+      \\caption{Summary of Estimates}
+      \\centering",
+        t1,
+    "\\end{minipage}%
+    \\begin{minipage}{.5\\linewidth}
+      \\centering
+        \\caption{Summary of CVs}",
+        t2,
+    "\\end{minipage} 
+\\end{table}"
+))  
+```
+
+```{r cv_tab, echo = FALSE, results = "asis"}
 outlier_tab <- as.data.frame(table(a$sp_outlier))
 colnames(outlier_tab) <- c("High CV Flag", "Count")
-kable(outlier_tab)
-```
-
-```{r cv_tab}
 cv_tab <- as.data.frame(table(a$cv_cat))
 colnames(cv_tab) <- c("CV", "Count")
-kable(cv_tab)
+t3 <- kable(cv_tab, format = "latex", booktabs = TRUE)
+t4 <- kable(outlier_tab, format = "latex", booktabs = TRUE)
+cat(c("\\begin{table}[!htb]
+    \\begin{minipage}{.5\\linewidth}
+      \\caption{CVs by Reliability Bin}
+      \\centering",
+        t3,
+    "\\end{minipage}%
+    \\begin{minipage}{.5\\linewidth}
+      \\centering
+        \\caption{High CVs}",
+        t4,
+    "\\end{minipage} 
+\\end{table}"
+))  
 ```
 
 ### Spatial distribution of CVs
 ```{r plots}
 a <- a %>% mutate_at(vars(sp_outlier), as.factor)
-cv_plot <- ggplot(a) +
-  geom_sf(aes(fill = cv), color = NA) +
+cv_plot <- ggplot() +
+  geom_sf(data = a, aes(fill = cv), color = NA) +
   coord_sf(datum = NA) +
   labs(title = "Coefficients of Variation") +
   scale_fill_viridis("CV") +
   theme(text = element_text(family = "CM Roman", size = 10))
-outlier_plot <- ggplot(a) +
-  geom_sf(aes(fill = sp_outlier), color = NA) +
+outlier_plot <- ggplot() +
+  geom_sf(data = a, aes(fill = sp_outlier), color = NA) +
   coord_sf(datum = NA) +
   labs(title = "High CVs") +
   scale_fill_manual(values = c("gainsboro", "#45055B"), name = "Outlier") +
