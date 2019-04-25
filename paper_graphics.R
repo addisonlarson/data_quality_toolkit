@@ -180,10 +180,10 @@ zc_labels <- c("(-Inf, -1.5 SD]   ",
                "(1.5 SD, Inf)   ")
 zc_1 <- zc_1 %>%
   mutate(classification = cut(sum_est, breaks = zc_1_breaks, labels = zc_labels),
-         cv_cat = case_when(cv <= 15 ~ "0-15     ",
-                            cv > 15 & cv <= 30 ~ "15.1-30     ",
-                            cv > 30 & cv <= 60 ~ "30.1-60     ",
-                            cv > 60 ~ "60.1+     ")) %>%
+         cv_cat = case_when(cv <= 15 ~ "0-15%     ",
+                            cv > 15 & cv <= 30 ~ "15.1-30%     ",
+                            cv > 30 & cv <= 60 ~ "30.1-60%     ",
+                            cv > 60 ~ "60.1+%     ")) %>%
   st_transform(., 26918)
 
 zc_1_est <- ggplot() +
@@ -205,7 +205,7 @@ zc_1_cv <- ggplot() +
   coord_sf(datum = NA)
 
 png(here("figs", "zc_1_est_cv.png"), width = 7, height = 3, units = "in", res = 400)
-gridExtra::grid.arrange(zc_1_est, zc_1_cv, ncol = 2, widths = c(1.15, 1))
+gridExtra::grid.arrange(zc_1_est, zc_1_cv, ncol = 2, widths = c(1.12, 1))
 dev.off()
 
 # Local context example 1: IPD scoring
