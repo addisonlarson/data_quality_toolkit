@@ -139,6 +139,7 @@ zc <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100))
+round(summary(zc$cv), 2)
 zc_breaks <- c(-1, 15.317, 318.147, 620.978, 923.808, max(zc$sum_est))
 zc_labels <- c("(-Inf, -1.5 SD]",
                "(-1.5 SD, -0.5 SD]",
@@ -165,6 +166,7 @@ zc_1 <- st_read(here("raw", "residence", "tract", "A112310.shp")) %>%
   mutate(se = sum_moe / 1.645,
          cv = case_when(sum_est == 0 ~ 100,
                         sum_est != 0 ~ se / sum_est * 100))
+round(summary(zc_1$cv), 2)
 zc_1_breaks <- c(-1, 1, 97.891, 231.411, 364.932, max(zc_1$sum_est))
 zc_1 <- zc_1 %>%
   mutate(classification = cut(sum_est, breaks = zc_1_breaks, labels = zc_labels),
@@ -332,6 +334,17 @@ for (i in 1:length(variabletype)){
     select(variable, rac, wac, od)
   write_csv(temp, here("output_data", paste(variabletype[i], "bytype.csv", sep = "_")))
 }
+
+temp <- bind_rows(rac_full, wac_full) %>%
+  bind_rows(., od_full) %>%
+  mutate(cat = case_when(cv <= 15 ~ "0-15%",
+                         cv > 15 & cv <= 30 ~ "15.1-30%",
+                         cv > 30 & cv <= 60 ~ "30.1-60%",
+                         cv > 60 ~ "60.1+%")) %>%
+  group_by(tabletype, cat) %>%
+  summarize(n = n()) %>%
+  mutate(pct = round(n / sum(n) * 100, 0))
+write_csv(temp, here("output_data", "overall_bytype_cat.csv"))
 
 # And overall
 temp <- bind_rows(rac_full, wac_full) %>%
