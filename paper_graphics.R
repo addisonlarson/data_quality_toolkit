@@ -235,7 +235,7 @@ summary(mod)
 ggplot(ipd, aes(x = Mean_CV, y = IPD_Score)) +
   theme(text = element_text(family = "CMU Serif")) +
   theme(panel.background = element_blank()) +
-  geom_vline(xintercept = 30, color = "gray", lwd = 1) +
+  geom_vline(xintercept = 15, color = "gray", lwd = 1) +
   geom_point(color = "#45055B") +
   labs(title = "Relationship between IPD score\nand data reliability",
        x = "Mean CV of IPD population groups (%)", y = "IPD score")
