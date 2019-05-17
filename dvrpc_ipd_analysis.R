@@ -291,4 +291,27 @@ ggsave(here("figs", "ipd_cv_class_errors.png"), width = 4.5, height = 4.5, units
 # Would aggregating geographies improve the classification error?
 # Or is the only real way to improve classification error to scrap the IPD binning procedure?
 
+# LEP dataset reliability
+lep <- ipd %>% select(LEP_PctEst, LEP_PctMOE)
+benchmarks <- quantile(lep$LEP_PctEst, probs = c(0.25, 0.5, 0.75, 0.9), na.rm = TRUE)
+lep_example <- lep %>%
+  filter(LEP_PctEst %in% benchmarks) %>%
+  group_by(LEP_PctEst) %>%
+  summarize(mean(LEP_PctMOE))
 
+# Show RM distribution and class breaks
+ggplot(ipd, aes(x = RM_PctEst)) +
+  theme(text = element_text(family = "CMU Serif"),
+        panel.background = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  geom_density(color = "#45055B") +
+  geom_hline(aes(yintercept = 0), color = "white") +
+  geom_vline(aes(xintercept = 0.1), color = "gray", size = 1) +
+  geom_vline(aes(xintercept = 18.856), color = "gray", size = 1) +
+  geom_vline(aes(xintercept = 48.136), color = "gray", size = 1) +
+  geom_vline(aes(xintercept = 77.416), color = "gray", size = 1) +
+  geom_vline(aes(xintercept = 100), color = "white", size = 1) +
+  labs(title = "RM Indicator Distribution and Scoring Breaks",
+       x = "Pct. RM individuals in tract", y = "Density")
+ggsave(here("figs", "ipd_rm_class_breaks.png"), width = 4.5, height = 4.5, units = "in", dpi = 400)
